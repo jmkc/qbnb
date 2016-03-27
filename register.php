@@ -34,6 +34,7 @@ if(isset($_POST['submit-form'])) {
     //check to see if passwords match
     if($password != $password_confirm) {
         $error .= "Passwords do not match.<br/> \n\r";
+        echo "Your passwords don't match!";
         $success = false;
     }
 
@@ -47,7 +48,7 @@ if(isset($_POST['submit-form'])) {
         $data['faculty'] = $faculty;
         $data['degree'] = $degree;
         $data['lastName'] = $lastName;
-        $data['password'] = md5($password); //encrypt the password for storage
+        $data['password'] = $password; //encrypt the password for storage
 
         //create the new user object
         $newUser = new User($data);
@@ -75,14 +76,14 @@ if(isset($_POST['submit-form'])) {
 <body>
     <?php echo ($error != "") ? $error : ""; ?>
     <form action="register.php" method="post">
-    E-Mail: <input type="text" value="<?php echo $email; ?>" name="email" /><br/>
-    First Name: <input type='text' name='firstName' id='firstName'  value="<?php echo $firstName; ?>" /><br/>
-    Last Name: <input type='text' name='lastName' id='lastName'  value="<?php echo $lastName; ?>"/><br/>
-    Year: <input type='text' name='year' id='year'  value="<?php echo $year; ?>"/><br/>
-    Faculty: <input type='text' name='faculty' id='faculty'  value="<?php echo $faculty; ?>"/><br/>
-    Degree: <input type='text' name='degree' id='degree'  value"<?php echo $email; ?>" /><br/>
-    Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
-    Password (confirm): <input type="password" value="<?php echo $password_confirm; ?>" name="password-confirm" /><br/>
+    E-Mail: <input type='text' name='email' id='email' /><br/>
+    First Name: <input type='text' name='firstName' id='firstName' /><br/>
+    Last Name: <input type='text' name='lastName' id='lastName'/><br/>
+    Degree: <input type='text' name='degree' id='degree'/><br/>
+    Faculty: <input type='text' name='faculty' id='faculty'/><br/>
+    Graduating Year: <input type='text' name='year' id='year'/><br/>
+    Password: <input type='password' name='password' id='password' /><br/>
+    Password (confirm): <input type="password" name="password-confirm" id='password-confirm'/><br/>
     <input type="submit" value="Register" name="submit-form" />
     </form>
 </body>

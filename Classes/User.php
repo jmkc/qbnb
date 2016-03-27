@@ -29,8 +29,8 @@ class User {
         $this->year = (isset($data['year'])) ? $data['year'] : "";
         $this->faculty = (isset($data['faculty'])) ? $data['faculty'] : "";
         $this->degree = (isset($data['degree'])) ? $data['degree'] : "";
-        $this->is_admin = (isset($data['is_admin'])) ? $data['is_admin'] : "";
-        $this->is_deleted = (isset($data['is_deleted'])) ? $data['is_deleted'] : "";
+        $this->is_admin = 0;
+        $this->is_deleted = 0;
 	}
 
 	public function save($isNewUser = false) {
@@ -48,18 +48,22 @@ class User {
 			);
 			
 			//update the row in the database
-			$db->update($data, 'users', 'id = '.$this->id);
+			$db->update($data, 'Member', 'member_id = '.$this->member_id);
 		}else {
 		//if the user is being registered for the first time.
 			$data = array(
-				"username" => "'$this->username'",
-				"password" => "'$this->hashedPassword'",
 				"email" => "'$this->email'",
-				"join_date" => "'".date("Y-m-d H:i:s",time())."'"
+				"password" => "'$this->password'",
+				"FName" => "'this->FName'",
+                "LName" => "'this->LName'",
+                "year" => "'this->year'",
+                "faculty" => "'this->faculty'",
+                "degree" => "'this->degree'",
+                "is_admin" => "'this->is_admin'",
+                "is_deleted" => "'this->is_deleted'"
 			);
 			
-			$this->id = $db->insert($data, 'users');
-			$this->joinDate = time();
+			$this->member_id = $db->insert($data, 'Member');
 		}
 		return true;
 	}
