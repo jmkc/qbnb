@@ -5,6 +5,10 @@
   
     </head>
 <body>
+<?php
+  //Create a user session or resume an existing one
+ session_start();
+ ?>
  Welcome {name}, <a href="index.php?logout=1">Log Out</a><br/>
 <!-- dynamic content will be here -->
 <form name='editProfile' id='editProfile' action='profile.php' method='post'>
@@ -30,4 +34,5 @@
     </table>
 </form>
 </body>
+
 </html>
