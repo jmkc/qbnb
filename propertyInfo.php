@@ -6,9 +6,11 @@ require_once 'global.inc.php';
 if(!isset($_SESSION['logged_in'])) {
     header("Location: index.php");
 }
- 
+if(!isset($_SESSION['property_id'])) {
+    header("Location: viewproperties.php");
+}
 //get the user object from the session
-$member = unserialize($_SESSION['member_id']);
+$property_id = $_SESSION['property_id'];
  
 //initialize php variables used in the form
 $email = $member->email;
