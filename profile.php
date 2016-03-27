@@ -39,21 +39,21 @@ if(isset($_SESSION['id'])){
 }
 
 ?>
- Welcome {name}, <a href="index.php?logout=1">Log Out</a><br/>
+Welcome  <?php echo $myrow['username']; ?>, <a href="index.php?logout=1">Log Out</a><br/>
 <!-- dynamic content will be here -->
 <form name='editProfile' id='editProfile' action='profile.php' method='post'>
     <table border='0'>
         <tr>
             <td>Username</td>
-            <td><input type='text' name='username' id='username' disabled/></td>
+            <td><input type='text' name='username' id='username' disabled  value="<?php echo $myrow['username']; ?>"  /></td>
         </tr>
         <tr>
             <td>Password</td>
-             <td><input type='password' name='password' id='password' /></td>
+             <td><input type='text' name='password' id='password'  value="<?php echo $myrow['password']; ?>" /></td>
         </tr>
-		<tr>
+        <tr>
             <td>Email</td>
-            <td><input type='text' name='email' id='email' /></td>
+            <td><input type='text' name='email' id='email'  value="<?php echo $myrow['email']; ?>" /></td>
         </tr>
         <tr>
             <td></td>
