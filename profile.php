@@ -24,6 +24,12 @@ $member = unserialize($_SESSION['member_id']);
    header("Location: viewproperties.php");
  }
  
+ if(isset($_POST['viewYourProps']) && isset($_SESSION['member_id'])){
+  // include database connection
+    include_once 'config/connection.php'; 
+   header("Location: viewyourproperties.php");
+ }
+ 
   if(isset($_POST['logoutBtn']) && isset($_SESSION['member_id'])){
   // include database connection
     include_once 'config/connection.php'; 

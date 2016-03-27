@@ -6,20 +6,27 @@ require_once 'global.inc.php';
 if(!isset($_SESSION['logged_in'])) {
     header("Location: index.php");
 }
-$allProperties = mysql_query("SELECT * FROM Property");
+
+if(isset($_POST['back'])) { 
+    header("Location: profile.php");
+} 
+
+$member = unserialize($_SESSION['member_id']);
+$allProperties = mysql_query("SELECT * FROM Property WHERE owner_id = $member->member_id");
 ?>
 <html>
 <head>
-    <title>Qbnb | View All Properties</title>
+    <title>Qbnb | View Your Properties</title>
 </head>
 <body>
  	<?php
  	while($property = mysql_fetch_assoc($allProperties))
  	{
  		extract($property);
- 		echo "<br />$property_id, Address:$address, $number_of_rooms, $room_type, $price <br />";
+ 		echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price <br />";
  	}
 
  	?>
 </body>
+<input type='submit' name='back' id='back' value='Back' /> 
 </html>
