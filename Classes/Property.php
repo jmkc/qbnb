@@ -36,8 +36,8 @@ class Property {
 			$data = array(
 				"address" => "'$this->address'",
 				"number_of_rooms" => "'$this->number_of_rooms'",
-				"room_type" => "'$this->room_type'"
-				"price" => "'$this->price'"
+				"room_type" => "'$this->room_type'",
+				"price" => "'$this->price'",
 			);
 			
 			//update the row in the database
@@ -47,8 +47,8 @@ class Property {
 			$data = array(
 				"address" => "'$this->address'",
 				"number_of_rooms" => "'$this->number_of_rooms'",
-				"room_type" => "'$this->room_type'"
-				"price" => "'$this->price'"
+				"room_type" => "'$this->room_type'",
+				"price" => "'$this->price'",
 			);
 			
 			$this->property_id = $db->insert($data, 'Property');
