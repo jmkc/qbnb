@@ -29,7 +29,8 @@ if(isset($_POST['viewbooking'])) {
  		extract($property);
  		echo "<br />Address:$address, 
  		$number_of_rooms, $room_type, $price <br />";
- 		echo "<a href='propertyInfo.php?property_id=<?php echo $property_id ?'>Page2</a>";
+        echo "$property_id";
+ 		echo "<a href='propertyInfo.php?property_id=$property_id'>Property Info</a>";
  	}
  	echo "<input type='submit' value='Cancel' name='cancel' /></form>";
  	?>
