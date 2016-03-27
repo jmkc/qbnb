@@ -9,7 +9,7 @@
  //check if the user clicked the logout link and set the logout GET parameter
 if(isset($_GET['logout'])){
 	//Destroy the user's session.
-	$_SESSION['id']=null;
+	$_SESSION['member_id']=null;
 	session_destroy();
 }
 ?>
@@ -19,7 +19,7 @@ if(isset($_GET['logout'])){
  ?>
  <?php
  //check if the user is already logged in and has an active session
-if(isset($_SESSION['id'])){
+if(isset($_SESSION['member_id'])){
 	//Redirect the browser to the profile editing page and kill this page.
 	header("Location: profile.php");
 	die();
@@ -33,13 +33,14 @@ if(isset($_POST['loginBtn'])){
     include_once 'config/connection.php'; 
 	
 	// SELECT query
-        $query = "SELECT id,username, password, email FROM user WHERE username=? AND password=?";
+        $query = "SELECT member_id,email, password, FName, LName, year, faculty, degree, is_admin, is_deleted
+         FROM member WHERE email=? AND password=?";
  
         // prepare query for execution
         if($stmt = $con->prepare($query)){
 		
         // bind the parameters. This is the best way to prevent SQL injection hacks.
-        $stmt->bind_Param("ss", $_POST['username'], $_POST['password']);
+        $stmt->bind_Param("ss", $_POST['email'], $_POST['password']);
          
         // Execute the query
 		$stmt->execute();
@@ -55,7 +56,7 @@ if(isset($_POST['loginBtn'])){
 			//Read the user details
 			$myrow = $result->fetch_assoc();
 			//Create a session variable that holds the user's id
-			$_SESSION['id'] = $myrow['id'];
+			$_SESSION['member_id'] = $myrow['member_id'];
 			//Redirect the browser to the profile editing page and kill this page.
 			header("Location: profile.php");
 			die();
@@ -75,7 +76,7 @@ if(isset($_POST['loginBtn'])){
     <table border='0'>
         <tr>
             <td>Username</td>
-            <td><input type='text' name='username' id='username' /></td>
+            <td><input type='text' name='email' id='email' /></td>
         </tr>
         <tr>
             <td>Password</td>
