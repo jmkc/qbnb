@@ -1,6 +1,6 @@
 <?php 
  
-require_once 'includes/global.inc.php';
+require_once 'global.inc.php';
  
 //check to see if they're logged in
 if(!isset($_SESSION['logged_in'])) {
