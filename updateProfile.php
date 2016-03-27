@@ -12,8 +12,8 @@ $member = unserialize($_SESSION['member_id']);
  
 //initialize php variables used in the form
 $email = $member->email;
-$firstName = $member->firstName;
-$lastName = $member->lastName;
+$FName = $member->FName;
+$LName = $member->LName;
 $year = $member->year;
 $faculty = $member->faculty;
 $degree = $member->degree;
@@ -25,8 +25,8 @@ if(isset($_POST['submit-updateProfile'])) {
     //retrieve the $_POST variables
     $password = $_POST['password'];
     $email = $_POST['email'];
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
+    $FName = $_POST['FName'];
+    $LName = $_POST['LName'];
     $year = $_POST['year'];
     $faculty = $_POST['faculty'];
     $degree = $_POST['degree'];
@@ -34,8 +34,8 @@ if(isset($_POST['submit-updateProfile'])) {
  
     $member->email = $email;
     $member->password = $password;
-    $member->firstName = $firstName;
-    $member->lastName = $lastName;
+    $member->FName = $FName;
+    $member->LName = $LName;
     $member->year = $year;
     $member->faculty = $faculty;
     $member->degree = $degree;
@@ -56,8 +56,8 @@ if(isset($_POST['submit-updateProfile'])) {
     <?php echo $message; ?>
  
     <form action="updateProfile.php" method="post">
-    First Name: <input type='text' name='firstName' id='firstName'  value="<?php echo $firstName; ?>" /><br/>
-    Last Name: <input type='text' name='lastName' id='lastName'  value="<?php echo $lastName; ?>"/><br/>
+    First Name: <input type='text' name='FName' id='FName'  value="<?php echo $FName; ?>" /><br/>
+    Last Name: <input type='text' name='LName' id='LName'  value="<?php echo $LName; ?>"/><br/>
     Year: <input type='text' name='year' id='year'  value="<?php echo $year; ?>"/><br/>
     Faculty: <input type='text' name='faculty' id='faculty'  value="<?php echo $faculty; ?>"/><br/>
     Degree: <input type='text' name='degree' id='degree'  value"<?php echo $email; ?>" /><br/>

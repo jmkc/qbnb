@@ -7,6 +7,7 @@
 <body>
 <?php
 require_once 'global.inc.php';
+$member = unserialize($_SESSION['member_id']);
   //Create a user session or resume an existing one
  //session_start();
  ?>
@@ -72,7 +73,7 @@ if(isset($_SESSION['member_id'])){
 }
 
 ?>
-Welcome  <?php echo $myrow['FName']; ?>, <a href="index.php?logout=1">Log Out</a><br/>
+Welcome  <?php echo $member->FName; ?>, <a href="index.php?logout=1">Log Out</a><br/>
 <!-- dynamic content will be here -->
 <!-- Update profile-->
 <input type='update' name='goToUpdate' id='goToUpdate' value='Update Profile' \>
