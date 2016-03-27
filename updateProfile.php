@@ -42,6 +42,10 @@ if(isset($_POST['submit-updateProfile'])) {
     $member->save();
  
     $message = "Settings Saved<br/>";
+    header("Location: profile.php");
+}
+if(isset($_POST['cancel'])) { 
+    header("Location: profile.php");
 }
  
 //If the form wasn't submitted, or didn't validate
@@ -53,20 +57,18 @@ if(isset($_POST['submit-updateProfile'])) {
     <title>Qbnb | Update Profile</title>
 </head>
 <body>
-    <?php echo $message; ?>
-    $member->faculty;
-    $member->degree;
  
     <form action="updateProfile.php" method="post">
     First Name: <input type='text' name='FName' id='FName'  value="<?php echo $FName; ?>" /><br/>
     Last Name: <input type='text' name='LName' id='LName'  value="<?php echo $LName; ?>"/><br/>
     Year: <input type='text' name='year' id='year'  value="<?php echo $year; ?>"/><br/>
     Faculty: <input type='text' name='faculty' id='faculty'  value="<?php echo $faculty; ?>"/><br/>
-    Degree: <input type='text' name='degree' id='degree'  value"<?php echo $degree; ?>" /><br/>
+    Degree: <input type='text' name='degree' id='degree'  value="<?php echo $degree; ?>" /><br/>
     Password: <input type="password" name="password" /><br/>
     Password (confirm): <input type="password"  name="password-confirm" /><br/>
     
     <input type="submit" value="Update Profile" name="submit-updateProfile" />
+    <input type="submit" value="Cancel" name="cancel" />
     </form>
 </body>
 </html>
