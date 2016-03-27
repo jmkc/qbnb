@@ -2,7 +2,8 @@
 
 //DB.php
 
-class DB {
+class Database
+{
 
 	protected $db_name = "qbnb";
 	protected $db_user = "Assignment1";
@@ -85,5 +86,3 @@ class DB {
 	}
 
 }
-
-?>

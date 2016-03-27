@@ -17,7 +17,7 @@ class UserTools {
 
 		if(mysql_num_rows($result) == 1)
 		{
-			$_SESSION["member_id"] = serialize(new User(mysql_fetch_assoc($result)));
+			$_SESSION["member_id"] = serialize(new Member(mysql_fetch_assoc($result)));
 			$_SESSION["login_time"] = time();
 			$_SESSION["logged_in"] = 1;
 			return true;
@@ -51,10 +51,10 @@ class UserTools {
 	//returns a User object. Takes the users id as an input
 	public function get($member_id)
 	{
-		$db = new DB();
+		$db = new Database();
 		$result = $db->select('Member', "member_id = $member_id");
-		
-		return new User($result);
+
+		return new Member($result);
 	}
 	
 }

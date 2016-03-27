@@ -2,10 +2,11 @@
 
 //User.class.php
 
-require_once 'DB.php';
+require_once 'Database.php';
 
 
-class User {
+class Member
+{
 
 	public $member_id;
 	public $email;
@@ -35,7 +36,7 @@ class User {
 
 	public function save($isNewUser = false) {
 		//create a new database object.
-		$db = new DB();
+		$db = new Database();
 		
 		//if the user is already registered and we're
 		//just updating their info.

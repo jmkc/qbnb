@@ -50,7 +50,7 @@ if(isset($_POST['submit-form'])) {
         $data['password'] = md5($password); //encrypt the password for storage
 
         //create the new user object
-        $newUser = new User($data);
+        $newUser = new Member($data);
 
         //save the new user to the database
         $newUser->save(true);

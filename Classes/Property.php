@@ -2,7 +2,7 @@
 
 //Property.php
 
-require_once 'DB.php';
+require_once 'Database.php';
 
 
 class Property {
@@ -27,7 +27,7 @@ class Property {
 
 	public function save($isNewProperty = false) {
 		//create a new database object.
-		$db = new DB();
+		$db = new Database();
 		
 		//if the user is already registered and we're
 		//just updating their info.
@@ -36,7 +36,7 @@ class Property {
 			$data = array(
 				"address" => "'$this->address'",
 				"number_of_rooms" => "'$this->number_of_rooms'",
-				"room_type" => "'$this->room_type'"
+				"room_type" => "'$this->room_type'",
 				"price" => "'$this->price'"
 			);
 			
@@ -47,7 +47,7 @@ class Property {
 			$data = array(
 				"address" => "'$this->address'",
 				"number_of_rooms" => "'$this->number_of_rooms'",
-				"room_type" => "'$this->room_type'"
+				"room_type" => "'$this->room_type'",
 				"price" => "'$this->price'"
 			);
 			
