@@ -1,3 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Welcome to mysite</title>
+  
+    </head>
+<body>
+<?php
+ //check if the user clicked the logout link and set the logout GET parameter
+if(isset($_GET['logout'])){
+	//Destroy the user's session.
+	$_SESSION['id']=null;
+	session_destroy();
+}
+?>
+<?php
+  //Create a user session or resume an existing one
+ session_start();
+ ?>
  <?php
  //check if the user is already logged in and has an active session
 if(isset($_SESSION['id'])){
@@ -5,9 +24,8 @@ if(isset($_SESSION['id'])){
 	header("Location: profile.php");
 	die();
 }
- ?>
-
- <?php
+?>
+<?php
 //check if the login form has been submitted
 if(isset($_POST['loginBtn'])){
  
@@ -52,37 +70,25 @@ if(isset($_POST['loginBtn'])){
  }
  
 ?>
+<!-- dynamic content will be here -->
+ <form name='login' id='login' action='index.php' method='post'>
+    <table border='0'>
+        <tr>
+            <td>Username</td>
+            <td><input type='text' name='username' id='username' /></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+             <td><input type='password' name='password' id='password' /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type='submit' id='loginBtn' name='loginBtn' value='Log In' /> 
+            </td>
+        </tr>
+    </table>
+</form>
 
-<!doctype html>
-<head>
-    <title>Welcome to mysite</title>
-    
-</head>
-<body>
-    
-    <!-- dynamic content will be here -->
-    <form name='login' id='login' action='index.php' method='post'>
-        <table border='0'>
-            <tr>
-                <td>Username</td>
-                <td><input type='text' name='username' id='username' /></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type='password' name='password' id='password' /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type='submit' id='loginBtn' name='loginBtn' value='Log In' />
-                </td>
-            </tr>
-        </table>
-    </form>
-    
 </body>
-<?php
-  //Create a user session or resume an existing one
- session_start();
- ?>
 </html>
