@@ -13,8 +13,7 @@ class UserTools {
 	public function login($email, $password)
 	{
 
-		$hashedPassword = md5($password);
-		$result = mysql_query("SELECT * FROM Member WHERE email = '$email' AND password = '$hashedPassword'");
+		$result = mysql_query("SELECT * FROM Member WHERE email = '$email' AND password = '$password'");
 
 		if(mysql_num_rows($result) == 1)
 		{
