@@ -27,6 +27,13 @@
         }
  }
  
+  if(isset($_POST['logoutBtn']) && isset($_SESSION['member_id'])){
+  // include database connection
+    include_once 'config/connection.php'; 
+    unset($_SESSION['member_id']);
+   header("Location: index.php");
+ }
+ 
  ?>
  <?php
 if(isset($_SESSION['member_id'])){
@@ -83,6 +90,12 @@ Welcome  <?php echo $myrow['FName']; ?>, <a href="index.php?logout=1">Log Out</a
             <td></td>
             <td>
                 <input type='submit' name='updateBtn' id='updateBtn' value='Update' /> 
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type='submit' name='logoutBtn' id='logoutBtn' value='Log Out' /> 
             </td>
         </tr>
     </table>
