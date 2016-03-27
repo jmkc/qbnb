@@ -14,7 +14,7 @@ if(isset($_POST['cancel'])) {
 
 if(isset($_POST['viewbooking'])) { 
 	$_SESSION['property_id'] = $property_id;
-    header("Location: propertyinfo.php");
+    header("Location: propertyInfo.php");
 }
 ?>
 <html>
