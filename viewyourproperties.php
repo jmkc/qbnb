@@ -27,6 +27,9 @@ $allProperties = mysql_query("SELECT * FROM Property WHERE owner_id = $member->m
  	}
 
  	?>
-</body>
+<form name='options' id='options' action='profile.php' method='post'>
 <input type='submit' name='back' id='back' value='Back' /> 
+</form>
+</body>
+
 </html>
