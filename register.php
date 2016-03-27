@@ -34,7 +34,6 @@ if(isset($_POST['submit-form'])) {
     //check to see if passwords match
     if($password != $password_confirm) {
         $error .= "Passwords do not match.<br/> \n\r";
-        echo "Your passwords don't match!";
         $success = false;
     }
 
