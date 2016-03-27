@@ -11,7 +11,6 @@ require_once 'global.inc.php';
  session_start();
  ?>
 <?php
- echo $_SESSION['member_id'];
  if(isset($_POST['updateBtn']) && isset($_SESSION['member_id'])){
   // include database connection
     include_once 'config/connection.php'; 

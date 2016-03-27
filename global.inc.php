@@ -17,6 +17,6 @@ session_start();
 //refresh session variables if logged in
 if(isset($_SESSION['logged_in'])) {
 	$user = unserialize($_SESSION['member_id']);
-	$_SESSION['member_id'] = serialize($userTools->get($user->id));
+	$_SESSION['member_id'] = serialize($userTools->get($user->member_id));
 }
 ?>
