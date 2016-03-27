@@ -1,3 +1,49 @@
+ <?php
+//check if the login form has been submitted
+if(isset($_POST['loginBtn'])){
+ 
+    // include database connection
+    include_once 'config/connection.php'; 
+	
+	// SELECT query
+        $query = "SELECT id,username, password, email FROM user WHERE username=? AND password=?";
+ 
+        // prepare query for execution
+        if($stmt = $con->prepare($query)){
+		
+        // bind the parameters. This is the best way to prevent SQL injection hacks.
+        $stmt->bind_Param("ss", $_POST['username'], $_POST['password']);
+         
+        // Execute the query
+		$stmt->execute();
+ 
+		// Get Results
+		$result = $stmt->get_result();
+
+		// Get the number of rows returned
+		$num = $result->num_rows;;
+		
+		if($num>0){
+			//If the username/password matches a user in our database
+			//Read the user details
+			$myrow = $result->fetch_assoc();
+			//Create a session variable that holds the user's id
+			$_SESSION['id'] = $myrow['id'];
+			//Redirect the browser to the profile editing page and kill this page.
+			header("Location: profile.php");
+			die();
+		} else {
+			//If the username/password doesn't matche a user in our database
+			// Display an error message and the login form
+			echo "Failed to login";
+		}
+		} else {
+			echo "failed to prepare the SQL";
+		}
+ }
+ 
+?>
+
 <!doctype html>
 <head>
     <title>Welcome to mysite</title>
