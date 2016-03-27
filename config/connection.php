@@ -1,9 +1,9 @@
 <?php
 // used to connect to the database
 $host = "localhost";
-$db_name = "cisc332_2";
-$username = "cisc332";
-$password = "cisc332password";
+$username = "Assignment1";
+$password = "cmpe332!";
+$db_name = "QBnB";
 
 try {
     $con = new mysqli($host,$username,$password, $db_name);
