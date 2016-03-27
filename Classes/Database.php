@@ -13,8 +13,8 @@ class Database
 	//open a connection to the database. Make sure this is called
 	//on every page that needs to use the database.
 	public function connect() {
-		$connection = mysql_connect($this->db_host, $this->db_user, $this->db_pass);
-		mysql_select_db($this->db_name);
+		$connection = mysqli_connect($this->db_host, $this->db_user, $this->db_pass);
+		mysqli_select_db($connection, $this->db_name);
 
 		return true;
 	}
@@ -55,7 +55,7 @@ class Database
 	public function update($data, $table, $where) {
 		foreach ($data as $column => $value) {
 			$sql = "UPDATE $table SET $column = $value WHERE $where";
-			mysql_query($sql) or die(mysql_error());
+			mysqli_query($sql) or die(mysql_error());
 		}
 		return true;
 	}
