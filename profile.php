@@ -35,6 +35,12 @@ require_once 'global.inc.php';
    header("Location: index.php");
  }
  
+ if(isset($_POST['viewProps']) && isset($_SESSION['member_id'])){
+  // include database connection
+    include_once 'config/connection.php'; 
+   header("Location: viewproperties.php");
+ }
+ 
  ?>
  <?php
 if(isset($_SESSION['member_id'])){
@@ -97,6 +103,12 @@ Welcome  <?php echo $myrow['FName']; ?>, <a href="index.php?logout=1">Log Out</a
             <td></td>
             <td>
                 <input type='submit' name='logoutBtn' id='logoutBtn' value='Log Out' /> 
+            </td>
+        </tr>
+         <tr>
+            <td></td>
+            <td>
+                <input type='submit' name='viewProps' id='viewProps' value='View Properties' /> 
             </td>
         </tr>
     </table>
