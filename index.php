@@ -1,4 +1,13 @@
  <?php
+ //check if the user is already logged in and has an active session
+if(isset($_SESSION['id'])){
+	//Redirect the browser to the profile editing page and kill this page.
+	header("Location: profile.php");
+	die();
+}
+ ?>
+
+ <?php
 //check if the login form has been submitted
 if(isset($_POST['loginBtn'])){
  
