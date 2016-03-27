@@ -1,5 +1,5 @@
 <?php
-//UserTools.php
+//UserTools.class.php
 
 require_once 'User.php';
 require_once 'DB.php';
@@ -13,50 +13,32 @@ class UserTools {
 	public function login($email, $password)
 	{
 
-		$query = "SELECT member_id,email, password, FName, LName, year, faculty, degree, is_admin, is_deleted
-         FROM member WHERE email=$email AND password=$password";
- 
-        // prepare query for execution
-        if($stmt = $con->prepare($query)){
-		
-        // bind the parameters. This is the best way to prevent SQL injection hacks.
-        $stmt->bind_Param("ss", $_POST['email'], $_POST['password']);
-         
-        // Execute the query
-		$stmt->execute();
- 
-		// Get Results
-		$result = $stmt->get_result();
+		$hashedPassword = md5($password);
+		$result = mysql_query("SELECT * FROM Member WHERE email = '$email' AND password = '$hashedPassword'");
 
-		// Get the number of rows returned
-		$num = $result->num_rows;
-		
-		if($num>0){
-			//If the username/password matches a user in our database
-			//Read the user details
-			$myrow = $result->fetch_assoc();
-			//Create a session variable that holds the user's id
-			$_SESSION['member_id'] = $myrow['member_id'];
-			//Redirect the browser to the profile editing page and kill this page.
+		if(mysql_num_rows($result) == 1)
+		{
+			$_SESSION["member_id"] = serialize(new User(mysql_fetch_assoc($result)));
+			$_SESSION["login_time"] = time();
+			$_SESSION["logged_in"] = 1;
 			return true;
-		} else {
-			//If the username/password doesn't matche a user in our database
-			// Display an error message and the login form
+		}else{
 			return false;
 		}
 	}
-    }
 	
 	//Log the user out. Destroy the session variables.
 	public function logout() {
 		unset($_SESSION['member_id']);
+		unset($_SESSION['login_time']);
+		unset($_SESSION['logged_in']);
 		session_destroy();
 	}
 
 	//Check to see if a username exists.
 	//This is called during registration to make sure all user names are unique.
-	public function checkUsernameExists($email) {
-		$result = mysql_query("select member_id from Member where email ='$email'");
+	public function checkEmailExists($email) {
+		$result = mysql_query("select member_id from users where email='$email'");
     	if(mysql_num_rows($result) == 0)
     	{
 			return false;
@@ -67,14 +49,14 @@ class UserTools {
 	
 	//get a user
 	//returns a User object. Takes the users id as an input
-	/*public function get($id)
+	public function get($member_id)
 	{
 		$db = new DB();
-        
-		$result = $db->select('Member', "id = $id");
+		$result = $db->select('Member', "member_id = $member_id");
 		
 		return new User($result);
-	}*/
+	}
 	
 }
+
 ?>
