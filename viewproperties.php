@@ -13,12 +13,11 @@ $allProperties = mysql_query("SELECT * FROM Property");
     <title>Qbnb | View All Properties</title>
 </head>
 <body>
-    <?php echo $message; ?>
  	<?php
  	while($property = mysql_fetch_assoc($allProperties))
  	{
  		extract($property);
- 		echo "<br />$property_id, Address:$address, $number_of_rooms, $room_type, $price <br />"
+ 		echo "<br />$property_id, Address:$address, $number_of_rooms, $room_type, $price <br />";
  	}
 
  	?>
