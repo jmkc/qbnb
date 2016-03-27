@@ -77,8 +77,6 @@ class Database
 		}
 
 		$sql = "insert into $table ($columns) values ($values')";
-        
-        echo $sql;
 
 		mysql_query($sql) or die(mysql_error());
 

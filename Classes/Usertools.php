@@ -15,7 +15,6 @@ class Usertools
 	{
 
 		$result = mysql_query("SELECT * FROM Member WHERE email = '$email' AND password = '$password'");
-        echo $result;
 		if(mysql_num_rows($result) == 1)
 		{
 			$_SESSION["member_id"] = serialize(new Member(mysql_fetch_assoc($result)));
