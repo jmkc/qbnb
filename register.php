@@ -4,7 +4,7 @@
 require_once 'includes/global.inc.php';
 
 //initialize php variables used in the form
-$username = "";
+
 $password = "";
 $password_confirm = "";
 $email = "";
@@ -14,7 +14,6 @@ $error = "";
 if(isset($_POST['submit-form'])) { 
 
     //retrieve the $_POST variables
-    $username = $_POST['username'];
     $password = $_POST['password'];
     $email = $_POST['email'];
     $firstName = $_POST['firstName'];
@@ -24,7 +23,6 @@ if(isset($_POST['submit-form'])) {
     $degree = $_POST['degree'];
     $lastName = $_POST['lastName'];
     $password_confirm = $_POST['password-confirm'];
-    $email = $_POST['email'];
 
     //initialize variables for form validation
     $success = true;
@@ -58,7 +56,7 @@ if(isset($_POST['submit-form'])) {
         $newUser->save(true);
 
         //log them in
-        $userTools->login($username, $password);
+        $userTools->login($email, $password);
 
         //redirect them to a welcome page
         header("Location: profile.php");
@@ -77,7 +75,6 @@ if(isset($_POST['submit-form'])) {
 <body>
     <?php echo ($error != "") ? $error : ""; ?>
     <form action="register.php" method="post">
-
     E-Mail: <input type="text" value="<?php echo $email; ?>" name="email" /><br/>
     First Name: <input type='text' name='firstName' id='firstName'  value="<?php echo $firstName; ?>" /><br/>
     Last Name: <input type='text' name='lastName' id='lastName'  value="<?php echo $lastName; ?>"/><br/>
