@@ -54,15 +54,17 @@ if(isset($_POST['submit-updateProfile'])) {
 </head>
 <body>
     <?php echo $message; ?>
+    $member->faculty;
+    $member->degree;
  
     <form action="updateProfile.php" method="post">
     First Name: <input type='text' name='FName' id='FName'  value="<?php echo $FName; ?>" /><br/>
     Last Name: <input type='text' name='LName' id='LName'  value="<?php echo $LName; ?>"/><br/>
     Year: <input type='text' name='year' id='year'  value="<?php echo $year; ?>"/><br/>
     Faculty: <input type='text' name='faculty' id='faculty'  value="<?php echo $faculty; ?>"/><br/>
-    Degree: <input type='text' name='degree' id='degree'  value"<?php echo $email; ?>" /><br/>
-    Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
-    Password (confirm): <input type="password" value="<?php echo $password_confirm; ?>" name="password-confirm" /><br/>
+    Degree: <input type='text' name='degree' id='degree'  value"<?php echo $degree; ?>" /><br/>
+    Password: <input type="password" name="password" /><br/>
+    Password (confirm): <input type="password"  name="password-confirm" /><br/>
     
     <input type="submit" value="Update Profile" name="submit-updateProfile" />
     </form>
