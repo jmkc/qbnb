@@ -36,46 +36,11 @@ if(isset($_POST['loginBtn'])){
 		header("Location: profile.php");
 	}else{
 		$error = "Incorrect username or password. Please try again.";
-	}
-    
-	// SELECT query
-        /*$query = "SELECT member_id,email, password, FName, LName, year, faculty, degree, is_admin, is_deleted
-         FROM member WHERE email=? AND password=?";
+	}   
+ }
  
-        // prepare query for execution
-        if($stmt = $con->prepare($query)){
-		
-        // bind the parameters. This is the best way to prevent SQL injection hacks.
-        $stmt->bind_Param("ss", $_POST['email'], $_POST['password']);
-         
-        // Execute the query
-		$stmt->execute();
- 
-		// Get Results
-		$result = $stmt->get_result();
-
-		// Get the number of rows returned
-		$num = $result->num_rows;;
-		
-		if($num>0){
-			//If the username/password matches a user in our database
-			//Read the user details
-			$myrow = $result->fetch_assoc();
-			//Create a session variable that holds the user's id
-			$_SESSION['member_id'] = $myrow['member_id'];
-			//Redirect the browser to the profile editing page and kill this page.
-			header("Location: profile.php");
-			die();
-		} else {
-			//If the username/password doesn't matche a user in our database
-			// Display an error message and the login form
-			echo "Failed to login";
-		}
-		} else {
-			echo "failed to prepare the SQL";
-		}*/
-        
-        
+ if(isset($_POST['regBtn'])){
+     header("Location: register.php");
  }
  
 ?>
@@ -94,6 +59,12 @@ if(isset($_POST['loginBtn'])){
             <td></td>
             <td>
                 <input type='submit' id='loginBtn' name='loginBtn' value='Log In' /> 
+            </td>
+        </tr>
+         <tr>
+            <td></td>
+            <td>
+                <input type='submit' id='regBtn' name='regBtn' value='Register' /> 
             </td>
         </tr>
     </table>
