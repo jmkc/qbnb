@@ -1,10 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title>Welcome to mysite</title>
-  
-    </head>
-<body>
 <?php
 require_once 'global.inc.php';
  //check if the user clicked the logout link and set the logout GET parameter
@@ -14,10 +7,13 @@ if(isset($_GET['logout'])){
 	session_destroy();
 }
 ?>
-<?php
-  //Create a user session or resume an existing one
- session_start();
- ?>
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Welcome to mysite</title>
+  
+    </head>
+<body>
  <?php
  //check if the user is already logged in and has an active session
 if(isset($_SESSION['member_id'])){
