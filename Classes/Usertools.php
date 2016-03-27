@@ -22,6 +22,7 @@ class UserTools {
 			$_SESSION["logged_in"] = 1;
 			return true;
 		}else{
+            echo "Failed to log in!";
 			return false;
 		}
 	}

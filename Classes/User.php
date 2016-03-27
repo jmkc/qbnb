@@ -7,20 +7,30 @@ require_once 'DB.php';
 
 class User {
 
-	public $id;
-	public $username;
-	public $hashedPassword;
+	public $member_id;
 	public $email;
-	public $joinDate;
+	public $password;
+	public $FName;
+	public $LName;
+    public $year;
+    public $faculty;
+    public $degree;
+    public $is_admin;
+    public $is_deleted;
 
 	//Constructor is called whenever a new object is created.
 	//Takes an associative array with the DB row as an argument.
 	function __construct($data) {
-		$this->id = (isset($data['id'])) ? $data['id'] : "";
-		$this->username = (isset($data['username'])) ? $data['username'] : "";
-		$this->hashedPassword = (isset($data['password'])) ? $data['password'] : "";
+		$this->member_id = (isset($data['member_id'])) ? $data['member_id'] : "";
 		$this->email = (isset($data['email'])) ? $data['email'] : "";
-		$this->joinDate = (isset($data['join_date'])) ? $data['join_date'] : "";
+		$this->password = (isset($data['password'])) ? $data['password'] : "";
+		$this->FName = (isset($data['FName'])) ? $data['FName'] : "";
+		$this->LName = (isset($data['LName'])) ? $data['LName'] : "";
+        $this->year = (isset($data['year'])) ? $data['year'] : "";
+        $this->faculty = (isset($data['faculty'])) ? $data['faculty'] : "";
+        $this->degree = (isset($data['degree'])) ? $data['degree'] : "";
+        $this->is_admin = (isset($data['is_admin'])) ? $data['is_admin'] : "";
+        $this->is_deleted = (isset($data['is_deleted'])) ? $data['is_deleted'] : "";
 	}
 
 	public function save($isNewUser = false) {
@@ -32,9 +42,9 @@ class User {
 		if(!$isNewUser) {
 			//set the data array
 			$data = array(
-				"username" => "'$this-&gt;username'",
-				"password" => "'$this-&gt;hashedPassword'",
-				"email" => "'$this-&gt;email'"
+				"member_id" => "'$this->member_id'",
+				"email" => "'$this->email'",
+				"password" => "'$this->password'"
 			);
 			
 			//update the row in the database
@@ -42,9 +52,9 @@ class User {
 		}else {
 		//if the user is being registered for the first time.
 			$data = array(
-				"username" => "'$this-&gt;username'",
-				"password" => "'$this-&gt;hashedPassword'",
-				"email" => "'$this-&gt;email'",
+				"username" => "'$this->username'",
+				"password" => "'$this->hashedPassword'",
+				"email" => "'$this->email'",
 				"join_date" => "'".date("Y-m-d H:i:s",time())."'"
 			);
 			

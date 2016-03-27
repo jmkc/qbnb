@@ -6,11 +6,12 @@
     </head>
 <body>
 <?php
+require_once 'global.inc.php';
   //Create a user session or resume an existing one
  session_start();
  ?>
 <?php
- 
+ echo $_SESSION['member_id'];
  if(isset($_POST['updateBtn']) && isset($_SESSION['member_id'])){
   // include database connection
     include_once 'config/connection.php'; 
@@ -30,7 +31,8 @@
   if(isset($_POST['logoutBtn']) && isset($_SESSION['member_id'])){
   // include database connection
     include_once 'config/connection.php'; 
-    unset($_SESSION['member_id']);
+    $userTools = new UserTools();
+    $userTools->logout();
    header("Location: index.php");
  }
  
