@@ -1,20 +1,19 @@
 <?php
 
-&lt;?php
 //DB.php
 
 class DB {
 
-	protected $db_name = 'QBnB';
-	protected $db_user = 'cssf0rever';
-	protected $db_pass = 'root';
-	protected $db_host = 'localhost';
+	protected $db_name = "qbnb";
+	protected $db_user = "Assignment1";
+	protected $db_pass = "cmpe332!";
+	protected $db_host = "localhost";
 
 	//open a connection to the database. Make sure this is called
 	//on every page that needs to use the database.
 	public function connect() {
-		$connection = mysql_connect($this-&gt;db_host, $this-&gt;db_user, $this-&gt;db_pass);
-		mysql_select_db($this-&gt;db_name);
+		$connection = mysql_connect($this->db_host, $this->db_user, $this->db_pass);
+		mysql_select_db($this->db_name);
 
 		return true;
 	}
@@ -43,9 +42,9 @@ class DB {
 		$sql = "SELECT * FROM $table WHERE $where";
 		$result = mysql_query($sql);
 		if(mysql_num_rows($result) == 1)
-			return $this-&gt;processRowSet($result, true);
+			return $this->processRowSet($result, true);
 
-		return $this-&gt;processRowSet($result);
+		return $this->processRowSet($result);
 	}
 
 	//Updates a current row in the database.
@@ -53,7 +52,7 @@ class DB {
 	//and the values are the data that will be inserted into those columns.
 	//$table is the name of the table and $where is the sql where clause.
 	public function update($data, $table, $where) {
-		foreach ($data as $column =&gt; $value) {
+		foreach ($data as $column => $value) {
 			$sql = "UPDATE $table SET $column = $value WHERE $where";
 			mysql_query($sql) or die(mysql_error());
 		}
@@ -69,7 +68,7 @@ class DB {
 		$columns = "";
 		$values = "";
 
-		foreach ($data as $column =&gt; $value) {
+		foreach ($data as $column => $value) {
 			$columns .= ($columns == "") ? "" : ", ";
 			$columns .= $column;
 			$values .= ($values == "") ? "" : ", ";
@@ -86,7 +85,5 @@ class DB {
 	}
 
 }
-
-?&gt;
 
 ?>
