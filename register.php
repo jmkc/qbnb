@@ -1,7 +1,7 @@
 <?php
 //register.php
 
-require_once 'includes/global.inc.php';
+require_once 'global.inc.php';
 
 //initialize php variables used in the form
 
