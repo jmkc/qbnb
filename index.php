@@ -6,6 +6,7 @@
     </head>
 <body>
 <?php
+require_once 'global.inc.php';
  //check if the user clicked the logout link and set the logout GET parameter
 if(isset($_GET['logout'])){
 	//Destroy the user's session.
@@ -31,9 +32,18 @@ if(isset($_POST['loginBtn'])){
  
     // include database connection
     include_once 'config/connection.php'; 
-	
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+    $userTools = new UserTools();
+	if($userTools->login($email, $password)){
+		//successful login, redirect them to a page
+		header("Location: profile.php");
+	}else{
+		$error = "Incorrect username or password. Please try again.";
+	}
+    
 	// SELECT query
-        $query = "SELECT member_id,email, password, FName, LName, year, faculty, degree, is_admin, is_deleted
+        /*$query = "SELECT member_id,email, password, FName, LName, year, faculty, degree, is_admin, is_deleted
          FROM member WHERE email=? AND password=?";
  
         // prepare query for execution
@@ -67,7 +77,9 @@ if(isset($_POST['loginBtn'])){
 		}
 		} else {
 			echo "failed to prepare the SQL";
-		}
+		}*/
+        
+        
  }
  
 ?>
