@@ -75,7 +75,7 @@ if(isset($_POST['loginBtn'])){
  <form name='login' id='login' action='index.php' method='post'>
     <table border='0'>
         <tr>
-            <td>Username</td>
+            <td>E-Mail</td>
             <td><input type='text' name='email' id='email' /></td>
         </tr>
         <tr>
