@@ -12,7 +12,7 @@ Load Data
  $host = "localhost";
  $user = "Assignment1";
  $password = "cmpe332!";
- $database = "QBnB";
+ $database = "qbnb";
 
  $cxn = mysqli_connect($host,$user,$password, $database);
  if (mysqli_connect_error())
@@ -21,7 +21,7 @@ Load Data
   }
 
 // Create the Member table
-mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Member` (
+mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `qbnb`.`Member` (
   `member_id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
@@ -34,7 +34,7 @@ mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Member` (
   `is_deleted` TINYINT(1) NOT NULL,
   PRIMARY KEY (`member_id`));");
 
-mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`District` (
+mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `qbnb`.`District` (
   `district_id` INT NOT NULL AUTO_INCREMENT,
   `district_name` VARCHAR(45) NOT NULL,
   `Street_1` VARCHAR(45) NOT NULL,
@@ -44,7 +44,7 @@ mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`District` (
 
 
 
-mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Property` (
+mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `qbnb`.`Property` (
   `property_id` INT NOT NULL AUTO_INCREMENT,
   `address` VARCHAR(45) NOT NULL,
   `number_of_rooms` INT NOT NULL,
@@ -58,16 +58,16 @@ mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Property` (
   INDEX `fk_Property_District1_idx` (`district_id` ASC),
   CONSTRAINT `fk_Property_Member1`
     FOREIGN KEY (`owner_id`)
-    REFERENCES `mydb`.`Member` (`member_id`)
+    REFERENCES `qbnb`.`Member` (`member_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Property_District1`
     FOREIGN KEY (`district_id`)
-    REFERENCES `mydb`.`District` (`district_id`)
+    REFERENCES `qbnb`.`District` (`district_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)");
 
-mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Booking` (
+mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `qbnb`.`Booking` (
   `booking_id` INT NOT NULL AUTO_INCREMENT,
   `status` VARCHAR(45) NOT NULL,
   `start_date` DATE NOT NULL,
@@ -79,16 +79,16 @@ mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Booking` (
   INDEX `fk_Booking_Property1_idx` (`property_id` ASC),
   CONSTRAINT `fk_Booking_Member1`
     FOREIGN KEY (`booking_member_id`)
-    REFERENCES `mydb`.`Member` (`member_id`)
+    REFERENCES `qbnb`.`Member` (`member_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Booking_Property1`
     FOREIGN KEY (`property_id`)
-    REFERENCES `mydb`.`Property` (`property_id`)
+    REFERENCES `qbnb`.`Property` (`property_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)");
 
-mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Comment` (
+mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `qbnb`.`Comment` (
   `comment_id` INT NOT NULL AUTO_INCREMENT,
   `text` VARCHAR(140) NOT NULL,
   `Rating` INT NULL,
@@ -101,37 +101,37 @@ mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Comment` (
   INDEX `fk_Comment_Property1_idx` (`property_id` ASC),
   CONSTRAINT `fk_Comment_Member1`
     FOREIGN KEY (`commenting_member_id`)
-    REFERENCES `mydb`.`Member` (`member_id`)
+    REFERENCES `qbnb`.`Member` (`member_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Comment_Property1`
     FOREIGN KEY (`property_id`)
-    REFERENCES `mydb`.`Property` (`property_id`)
+    REFERENCES `qbnb`.`Property` (`property_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)");
 
-mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Phone_Number` (
+mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `qbnb`.`Phone_Number` (
   `phone_number` CHAR(13) NOT NULL,
   `member_id` INT NOT NULL,
   PRIMARY KEY (`phone_number`),
   INDEX `fk_Phone_Number_Member1_idx` (`member_id` ASC),
   CONSTRAINT `fk_Phone_Number_Member1`
     FOREIGN KEY (`member_id`)
-    REFERENCES `mydb`.`Member` (`member_id`)
+    REFERENCES `qbnb`.`Member` (`member_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)");
 
-mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Points_Of_Interest` (
+mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `qbnb`.`Points_Of_Interest` (
   `points_of_interest` VARCHAR(45) NOT NULL,
   `district_id` INT NOT NULL,
   INDEX `fk_Points_Of_Interest_District1_idx` (`district_id` ASC),
   CONSTRAINT `fk_Points_Of_Interest_District1`
     FOREIGN KEY (`district_id`)
-    REFERENCES `mydb`.`District` (`district_id`)
+    REFERENCES `qbnb`.`District` (`district_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)");
 
-mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Feature` (
+mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `qbnb`.`Feature` (
   `feature_id` INT NOT NULL AUTO_INCREMENT,
   `feature` VARCHAR(45) NOT NULL,
   `property_id` INT NOT NULL,
@@ -139,7 +139,7 @@ mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `mydb`.`Feature` (
   INDEX `fk_Feature_Property1_idx` (`property_id` ASC),
   CONSTRAINT `fk_Feature_Property1`
     FOREIGN KEY (`property_id`)
-    REFERENCES `mydb`.`Property` (`property_id`)
+    REFERENCES `qbnb`.`Property` (`property_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)");
 
