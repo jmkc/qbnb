@@ -68,6 +68,10 @@ if(isset($_POST['submit-form'])) {
 
 }
 
+if(isset($_POST['cancel-reg'])) { 
+    header("Location: index.php");
+} 
+
 //If the form wasn't submitted, or didn't validate
 //then we show the registration form again
 ?>
@@ -87,6 +91,7 @@ if(isset($_POST['submit-form'])) {
     Password: <input type='password' name='password' id='password' /><br/>
     Password (confirm): <input type="password" name="password-confirm" id='password-confirm'/><br/>
     <input type="submit" value="Register" name="submit-form" />
+    <input type="submit" value="Cancel" name="cancel-reg" />
     </form>
 </body>
 </html>
