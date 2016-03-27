@@ -1,7 +1,7 @@
 <?php
 
-require_once 'Classes/User.php';
-require_once 'Classes/UserTools.php';
+require_once 'Classes/Member.php';
+require_once 'Classes/Usertools.php';
 require_once 'Classes/Database.php';
 
 //connect to the database

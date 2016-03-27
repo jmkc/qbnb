@@ -1,10 +1,11 @@
 <?php
 //UserTools.class.php
 
-require_once 'User.php';
-require_once 'DB.php';
+require_once 'Member.php';
+require_once 'Database.php';
 
-class UserTools {
+class Usertools
+{
 
 	//Log the user in. First checks to see if the 
 	//username and password match a row in the database.
