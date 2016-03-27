@@ -9,6 +9,36 @@
   //Create a user session or resume an existing one
  session_start();
  ?>
+ <?php
+if(isset($_SESSION['id'])){
+   // include database connection
+    include_once 'config/connection.php'; 
+    
+    // SELECT query
+        $query = "SELECT id,username, password, email FROM user WHERE id=?";
+ 
+        // prepare query for execution
+        $stmt = $con->prepare($query);
+        
+        // bind the parameters. This is the best way to prevent SQL injection hacks.
+        $stmt->bind_Param("s", $_SESSION['id']);
+
+        // Execute the query
+        $stmt->execute();
+ 
+        // results 
+        $result = $stmt->get_result();
+        
+        // Row data
+        $myrow = $result->fetch_assoc();
+        
+} else {
+    //User is not logged in. Redirect the browser to the login index.php page and kill this page.
+    header("Location: index.php");
+    die();
+}
+
+?>
  Welcome {name}, <a href="index.php?logout=1">Log Out</a><br/>
 <!-- dynamic content will be here -->
 <form name='editProfile' id='editProfile' action='profile.php' method='post'>
