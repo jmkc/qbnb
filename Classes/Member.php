@@ -3,6 +3,7 @@
 //User.class.php
 
 require_once 'Database.php';
+require_once 'Booking.php';
 
 
 class Member
@@ -18,6 +19,7 @@ class Member
     public $degree;
     public $is_admin;
     public $is_deleted;
+	public $bookings;
 
 	//Constructor is called whenever a new object is created.
 	//Takes an associative array with the DB row as an argument.
@@ -32,7 +34,21 @@ class Member
         $this->degree = (isset($data['degree'])) ? $data['degree'] : "";
         $this->is_admin = 0;
         $this->is_deleted = 0;
+		$this->bookings = []; // declare empty array
 	}
+	
+	// Gets all bookings for this user and refreshes the instance property
+	public function getAllBookings(){
+		$db = new Database();
+		$array = $db->select('booking','booking_member_id='.$this->member_id);
+		foreach ($array as $booking_data){
+			$booking = new Booking($array);
+			array_push($this->bookings, $booking);
+		}
+		return $this->bookings;
+	}
+	
+	
 
 	public function save($isNewUser = false) {
 		//create a new database object.
@@ -68,6 +84,8 @@ class Member
 		}
 		return true;
 	}
+	
+	
 	
 }
 

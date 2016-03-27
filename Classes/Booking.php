@@ -11,6 +11,8 @@ class Booking {
 	public $status;
 	public $start_date;
 	public $is_deleted;
+	public $booking_member_id;
+	public $property_id;
 
 	//Constructor is called whenever a new object is created.
 	//Takes an associative array with the DB row as an argument.
@@ -19,9 +21,12 @@ class Booking {
 		$this->status = 'Unconfirmed';
 		$this->start_date = (isset($data['start_date'])) ? $data['start_date'] : "";
 		$this->is_deleted = 0;
+		$this->booking_member_id = (isset($data['booking_member_id'])) ? $data['booking_member_id'] : "";
+		$this->property_id = (isset($data['property_id'])) ? $data['property_id'] : "";
 	}
 
-	public function save($isNewBooking = false) {
+	
+	public function save() {
 		//create a new database object.
 		$db = new DB();
 		
@@ -30,7 +35,12 @@ class Booking {
 		if(!$isNewBooking) {
 			//set the data array
 			$data = array(
-				"start_date" => "'$this->start_date'"
+				"start_date" => "'$this->start_date'",
+				"status" => "'$this->status'",
+				"start_date" => "'$this->start_date'",
+				"is_deleted" => "'$this->is_deleted'",
+				"booking_member_id" => "'$this->booking_member_id'",
+				"property_id" => "'$this->property_id'"
 			);
 			
 			//update the row in the database
@@ -38,12 +48,15 @@ class Booking {
 		}else {
 		//if the booking is being registered for the first time.
 			$data = array(
-				"status" => $this->status,
-				"start_date" => $this->start_date,
-				"is_deleted" => $this->is_deleted
+				"start_date" => "'$this->start_date'",
+				"status" => "'$this->status'",
+				"start_date" => "'$this->start_date'",
+				"is_deleted" => "'$this->is_deleted'",
+				"booking_member_id" => "'$this->booking_member_id'",
+				"property_id" => "'$this->property_id'"
 			);
 			
-			$db->insert($data, 'Booking');
+			$db->insert($data, 'booking');
 		}
 		return true;
 	}
