@@ -34,7 +34,7 @@ if(isset($_SESSION['member_id'])){
     include_once 'config/connection.php'; 
     
     // SELECT query
-        $query = "SELECT member_id,FName, LName, password, email FROM Member WHERE id=?";
+        $query = "SELECT member_id,FName, LName, password, email FROM Member WHERE member_id=?";
  
         // prepare query for execution
         $stmt = $con->prepare($query);
