@@ -12,7 +12,6 @@ $member = unserialize($_SESSION['member_id']);
  
 //initialize php variables used in the form
 $email = $member->email;
-$email = $member->email;
 $firstName = $member->firstName;
 $lastName = $member->lastName;
 $year = $member->year;
