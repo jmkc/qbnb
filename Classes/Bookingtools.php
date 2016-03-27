@@ -6,7 +6,7 @@ require_once 'Database.php';
 
 class Bookingtools
 {
-	
+
 	//get a booking
 	//returns a Booking object. Takes the booking id as an input
 	public function get($booking_id)

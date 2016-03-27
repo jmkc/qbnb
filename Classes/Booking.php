@@ -2,7 +2,7 @@
 
 //Bookings.php
 
-require_once 'DB.php';
+require_once 'Database.php';
 
 
 class Booking {
@@ -16,9 +16,9 @@ class Booking {
 	//Takes an associative array with the DB row as an argument.
 	function __construct($data) {
 		$this->booking_id = (isset($data['booking_id'])) ? $data['booking_id'] : "";
-		$this->status = (isset($data['status'])) ? $data['status'] : "";
+		$this->status = 'Unconfirmed';
 		$this->start_date = (isset($data['start_date'])) ? $data['start_date'] : "";
-		$this->is_deleted = (isset($price['is_deleted'])) ? $data['is_deleted'] : "";
+		$this->is_deleted = 0;
 	}
 
 	public function save($isNewBooking = false) {
@@ -30,21 +30,20 @@ class Booking {
 		if(!$isNewBooking) {
 			//set the data array
 			$data = array(
-				"status" => "'$this->status'",
-				"start_date" => "'$this->start_date'",
+				"start_date" => "'$this->start_date'"
 			);
 			
 			//update the row in the database
 			$db->update($data, 'Booking', 'booking_id = '.$this->booking_id);
 		}else {
-		//if the user is being registered for the first time.
+		//if the booking is being registered for the first time.
 			$data = array(
-				"status" => "'$this->status'",
-				"start_date" => "'$this->start_date'",
-				
+				"status" => $this->status,
+				"start_date" => $this->start_date,
+				"is_deleted" => $this->is_deleted
 			);
 			
-			$this->booking_id = $db->insert($data, 'Booking');
+			$db->insert($data, 'Booking');
 		}
 		return true;
 	}
