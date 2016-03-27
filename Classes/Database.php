@@ -72,11 +72,13 @@ class Database
 		foreach ($data as $column => $value) {
 			$columns .= ($columns == "") ? "" : ", ";
 			$columns .= $column;
-			$values .= ($values == "") ? "" : ", ";
+			$values .= ($values == "") ? "'" : "', '";
 			$values .= $value;
 		}
 
-		$sql = "insert into $table ($columns) values ($values)";
+		$sql = "insert into $table ($columns) values ($values')";
+        
+        echo $sql;
 
 		mysqli_query($sql) or die(mysqli_error());
 

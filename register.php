@@ -8,6 +8,11 @@ require_once 'global.inc.php';
 $password = "";
 $password_confirm = "";
 $email = "";
+$FName = "";
+$LName = "";
+$year = "";
+$faculty = "";
+$degree = "";
 $error = "";
 
 //check to see that the form has been submitted
@@ -16,12 +21,11 @@ if(isset($_POST['submit-form'])) {
     //retrieve the $_POST variables
     $password = $_POST['password'];
     $email = $_POST['email'];
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
+    $FName = $_POST['FName'];
+    $LName = $_POST['LName'];
     $year = $_POST['year'];
     $faculty = $_POST['faculty'];
     $degree = $_POST['degree'];
-    $lastName = $_POST['lastName'];
     $password_confirm = $_POST['password-confirm'];
 
     //initialize variables for form validation
@@ -41,12 +45,11 @@ if(isset($_POST['submit-form'])) {
     {
         //prep the data for saving in a new user object
         $data['email'] = $email;
-        $data['firstName'] = $firstName;
-        $data['lastName'] = $lastName;
+        $data['FName'] = $FName;
+        $data['LName'] = $LName;
         $data['year'] = $year;
         $data['faculty'] = $faculty;
         $data['degree'] = $degree;
-        $data['lastName'] = $lastName;
         $data['password'] = $password; //encrypt the password for storage
 
         //create the new user object
@@ -76,8 +79,8 @@ if(isset($_POST['submit-form'])) {
     <?php echo ($error != "") ? $error : ""; ?>
     <form action="register.php" method="post">
     E-Mail: <input type='text' name='email' id='email' /><br/>
-    First Name: <input type='text' name='firstName' id='firstName' /><br/>
-    Last Name: <input type='text' name='lastName' id='lastName'/><br/>
+    First Name: <input type='text' name='FName' id='FName' /><br/>
+    Last Name: <input type='text' name='LName' id='LName'/><br/>
     Degree: <input type='text' name='degree' id='degree'/><br/>
     Faculty: <input type='text' name='faculty' id='faculty'/><br/>
     Graduating Year: <input type='text' name='year' id='year'/><br/>

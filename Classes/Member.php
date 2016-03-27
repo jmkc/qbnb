@@ -43,9 +43,9 @@ class Member
 		if(!$isNewUser) {
 			//set the data array
 			$data = array(
-				"member_id" => "'$this->member_id'",
-				"email" => "'$this->email'",
-				"password" => "'$this->password'"
+				"member_id" => $this->member_id,
+				"email" => $this->email,
+				"password" => $this->password
 			);
 			
 			//update the row in the database
@@ -53,18 +53,18 @@ class Member
 		}else {
 		//if the user is being registered for the first time.
 			$data = array(
-				"email" => "'$this->email'",
-				"password" => "'$this->password'",
-				"FName" => "'this->FName'",
-                "LName" => "'this->LName'",
-                "year" => "'this->year'",
-                "faculty" => "'this->faculty'",
-                "degree" => "'this->degree'",
-                "is_admin" => "'this->is_admin'",
-                "is_deleted" => "'this->is_deleted'"
+				"email" => $this->email,
+				"password" => $this->password,
+				"FName" => $this->FName,
+                "LName" => $this->LName,
+                "year" => $this->year,
+                "faculty" => $this->faculty,
+                "degree" => $this->degree,
+                "is_admin" => $this->is_admin,
+                "is_deleted" => $this->is_deleted
 			);
 			
-			$this->member_id = $db->insert($data, 'Member');
+			$db->insert($data, 'Member');
 		}
 		return true;
 	}
