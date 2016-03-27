@@ -1,6 +1,5 @@
 <?php
 
-&lt;?php
 //User.class.php
 
 require_once 'DB.php';
@@ -17,11 +16,11 @@ class User {
 	//Constructor is called whenever a new object is created.
 	//Takes an associative array with the DB row as an argument.
 	function __construct($data) {
-		$this-&gt;id = (isset($data['id'])) ? $data['id'] : "";
-		$this-&gt;username = (isset($data['username'])) ? $data['username'] : "";
-		$this-&gt;hashedPassword = (isset($data['password'])) ? $data['password'] : "";
-		$this-&gt;email = (isset($data['email'])) ? $data['email'] : "";
-		$this-&gt;joinDate = (isset($data['join_date'])) ? $data['join_date'] : "";
+		$this->id = (isset($data['id'])) ? $data['id'] : "";
+		$this->username = (isset($data['username'])) ? $data['username'] : "";
+		$this->hashedPassword = (isset($data['password'])) ? $data['password'] : "";
+		$this->email = (isset($data['email'])) ? $data['email'] : "";
+		$this->joinDate = (isset($data['join_date'])) ? $data['join_date'] : "";
 	}
 
 	public function save($isNewUser = false) {
@@ -33,30 +32,28 @@ class User {
 		if(!$isNewUser) {
 			//set the data array
 			$data = array(
-				"username" =&gt; "'$this-&gt;username'",
-				"password" =&gt; "'$this-&gt;hashedPassword'",
-				"email" =&gt; "'$this-&gt;email'"
+				"username" => "'$this-&gt;username'",
+				"password" => "'$this-&gt;hashedPassword'",
+				"email" => "'$this-&gt;email'"
 			);
 			
 			//update the row in the database
-			$db-&gt;update($data, 'users', 'id = '.$this-&gt;id);
+			$db->update($data, 'users', 'id = '.$this->id);
 		}else {
 		//if the user is being registered for the first time.
 			$data = array(
-				"username" =&gt; "'$this-&gt;username'",
-				"password" =&gt; "'$this-&gt;hashedPassword'",
-				"email" =&gt; "'$this-&gt;email'",
-				"join_date" =&gt; "'".date("Y-m-d H:i:s",time())."'"
+				"username" => "'$this-&gt;username'",
+				"password" => "'$this-&gt;hashedPassword'",
+				"email" => "'$this-&gt;email'",
+				"join_date" => "'".date("Y-m-d H:i:s",time())."'"
 			);
 			
-			$this-&gt;id = $db-&gt;insert($data, 'users');
-			$this-&gt;joinDate = time();
+			$this->id = $db->insert($data, 'users');
+			$this->joinDate = time();
 		}
 		return true;
 	}
 	
 }
-
-?&gt;
 
 ?>
