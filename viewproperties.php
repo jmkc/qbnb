@@ -11,6 +11,7 @@ $allProperties = mysql_query("SELECT * FROM Property");
 if(isset($_POST['cancel'])) { 
     header("Location: profile.php");
 }
+
 if(isset($_POST['viewbooking'])) { 
 	$_SESSION['property_id'] = $property_id;
     header("Location: propertyinfo.php");
@@ -22,6 +23,7 @@ if(isset($_POST['viewbooking'])) {
 </head>
 <body>
  	<?php
+ 	echo "<form action='viewproperties.php' method='post'>";
  	while($property = mysql_fetch_assoc($allProperties))
  	{
  		extract($property);
@@ -29,7 +31,7 @@ if(isset($_POST['viewbooking'])) {
  		$number_of_rooms, $room_type, $price <br />";
  		echo "<input type='submit' value='View Property' name='viewbooking' />";
  	}
- 	echo "<input type='submit' value='Cancel' name='cancel' />";
+ 	echo "<input type='submit' value='Cancel' name='cancel' /></form>";
  	?>
 </body>
 </html>
