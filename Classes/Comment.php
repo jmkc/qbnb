@@ -23,7 +23,7 @@ class Comment {
 		$this->text = (isset($data['text'])) ? $data['text'] : "";
 		$this->property_id = (isset($data['property_id'])) ? $data['property_id'] : "";
 		$this->commenting_member_id = (isset($data['commenting_member_id'])) ? $data['commenting_member_id'] : "";
-		$this->Date = 0000-00-00;
+		$this->Date = date('Y-m-d');
         $this->is_deleted = 0;
 	}
 	
