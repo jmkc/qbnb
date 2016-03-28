@@ -16,6 +16,10 @@ if(isset($_POST['viewproperty'])) {
     $_SESSION['property_id'] = $_POST['viewproperty'];
     header("Location: propertyInfo.php");
 }
+if(isset($_POST['addProperty'])) { 
+    header("Location: addProperty.php");
+}
+
 ?>
 <html>
 <head>
@@ -30,6 +34,7 @@ if(isset($_POST['viewproperty'])) {
  		echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price <br />";
  		echo "<input type='submit' value=$property_id name='viewproperty' />";
  	}
+ 	echo "<input type='submit' value='Add Property' name='addProperty' />"
  	echo "<input type='submit' value='Cancel' name='cancel' /></form>";
  	?>
 </body>
