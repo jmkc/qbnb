@@ -4,28 +4,17 @@
         <title>Administrator</title>
     </head>
 <body>
-
+	<table border = "1" style="width:50%">
+	
+<?php
+	require_once 'global.inc.php';
+	$member = unserialize($_SESSION['member_id']);
+	$allProperties = $db->select('property', 1);
+?>
 
 <?php
 
-require_once 'global.inc.php';
-$member = unserialize($_SESSION['member_id']);
 
-if(isset($_POST['viewAdminPropertiesBtn']) && isset($_SESSION['member_id'])){
-    include_once 'config/connection.php'; 
-    header("Location: viewAdminProperties.php");
-	die();
- }
-if(isset($_POST['viewAdminMembersBtn']) && isset($_SESSION['member_id'])){
-    include_once 'config/connection.php'; 
-	header("Location: viewAdminMembers.php");
-	die();
- }
-if(isset($_POST['viewPOIBtn']) && isset($_SESSION['member_id'])){
-	include_once 'config/connection.php';
-	header("Location: viewAdminPOI.php");
-	die();
-}
 if(isset($_POST['logoutBtn']) && isset($_SESSION['member_id'])){
 	include_once 'config/connection.php'; 
 	$userTools = new UserTools();
@@ -33,39 +22,50 @@ if(isset($_POST['logoutBtn']) && isset($_SESSION['member_id'])){
 	header("Location: index.php");
 	die();
 }
+if(isset($_POST['backBtn']) && isset($_SESSION['member_id'])){
+	include_once 'config/connection.php';
+	header("Location: index.php");
+	die();
+}
 ?>
 
 Welcome, Administrator <?php echo $member->FName; ?> <br/>
+Properties: <br/>
+<?php
+
+
+foreach ($allProperties as $value){
+	?>
+		<tr>
+	<?php
+	foreach ($value as $shit){
+		?>
+		<td>
+		<?php
+			echo $shit
+		?>
+		</td>
+		<?php
+	}
+	?>
+		</tr>
+	<?php
+}
+
+?>
+	</table>
 <form name='options' id='options' action='profile.php' method='post'>
     <table border='0'>
         <tr>
             <td></td>
             <td>
-                <input type='submit' name='viewAdminPropertiesBtn' id='viewAdminPropertiesBtn' value='Properties' /> 
-            </td>
-        </tr>
-         <tr>
-            <td></td>
-            <td>
-                <input type='submit' name='viewAdminMembersBtn' id='viewAdminMembersBtn' value='Members' /> 
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type='submit' name='viewPOIBtn' id='viewPOIBtn' value='Points of Interest' /> 
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type='submit' name='viewBooks' id='viewBooks' value='View Your Pending Bookings' /> 
-            </td>
-        </tr>
-         <tr>
-            <td></td>
-            <td>
                 <input type='submit' name='logoutBtn' id='logoutBtn' value='Log Out' /> 
+            </td>
+        </tr>
+		<tr>
+            <td></td>
+            <td>
+                <input type='submit' name='backBtn' id='backBtn' value='Back' /> 
             </td>
         </tr>
     </table>

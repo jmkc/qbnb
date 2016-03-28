@@ -64,6 +64,10 @@ class Property {
 		}
 		return true;
 	}
+	 public function __toString()
+    {
+        return $this->property_id;
+    }
 	
 }
 
