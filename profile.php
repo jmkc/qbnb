@@ -25,6 +25,13 @@ $member = unserialize($_SESSION['member_id']);
    header("Location: viewYourBookings.php");
    die();
  }
+ 
+  if(isset($_POST['viewBooks']) && isset($_SESSION['member_id'])){
+  // include database connection
+    include_once 'config/connection.php'; 
+   header("Location: viewPendingBookings.php");
+ }
+ 
   if(isset($_POST['logoutBtn']) && isset($_SESSION['member_id'])){
     include_once 'config/connection.php'; 
     $userTools = new UserTools();
