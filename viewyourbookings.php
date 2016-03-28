@@ -7,14 +7,13 @@ if(!isset($_SESSION['logged_in'])) {
     header("Location: index.php");
 }
 $member = unserialize($_SESSION['member_id']);
-$yourBookings = mysql_query("SELECT * FROM Booking where booking_member_id = $member->member_id and is_deleted = 0");
+$yourBookings = mysql_query("SELECT * FROM Booking inner join Property on Booking.property_id = Property.property_id inner join Member on owner_id = Member.member_id WHERE booking_member_id = $member->member_id and Booking.is_deleted = 0");
+
+
 if(isset($_POST['cancel'])) { 
     header("Location: profile.php");
 }
 
-if(isset($_POST['addProperty'])) { 
-    header("Location: addProperty.php");
-}
 
 ?>
 <html>
@@ -23,14 +22,14 @@ if(isset($_POST['addProperty'])) {
 </head>
 <body>
  	<?php
- 	echo "<form action='viewproperties.php' method='post'>";
- 	while($property = mysql_fetch_assoc($allProperties))
+ 	echo "<form action='viewyourbookings.php' method='post'>";
+ 	while($booking = mysql_fetch_assoc($yourBookings))
  	{
- 		extract($property);
- 		echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price <br />";
- 		echo "<input type='submit' value=$property_id name='viewproperty' />";
+ 		extract($booking);
+ 		echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price - Owner: $FName $LName - Move In Date: $start_date <br />";
+ 		//echo "<input type='submit' value=$property_id name='viewproperty' />";
  	}
- 	echo "<input type='submit' value='Add Property' name='addProperty' />";
+ 	//echo "<input type='submit' value='Add Property' name='addProperty' />";
  	echo "<input type='submit' value='Cancel' name='cancel' /></form>";
  	?>
 </body>
