@@ -30,7 +30,7 @@ class Booking {
 		$db = new Database();
 		$this->status= $newStatus;
 		$data = array(
-			"status" => "'$this->status'");
+			"status" => "'$this->status'"
 		);
 		$db->update($data, 'Booking', 'booking_id = '.$this->booking_id);
 	}
