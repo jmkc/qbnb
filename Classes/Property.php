@@ -37,8 +37,8 @@ class Property {
 		if(!$isNewProperty) {
 			//set the data array
 			$data = array(
-				"number_of_rooms" => "$this->number_of_rooms'",
-				"room_type" => "$this->room_type'",
+				"number_of_rooms" => "$this->number_of_rooms",
+				"room_type" => "$this->room_type",
 				"price" => "$this->price"
 			);
 			
