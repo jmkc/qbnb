@@ -5,6 +5,7 @@
 require_once 'Database.php';
 
 
+
 class Booking {
 
 	public $booking_id;
@@ -15,7 +16,7 @@ class Booking {
 	public $property_id;
 
 	//Constructor is called whenever a new object is created.
-	//Takes an associative array with the DB row as an argument.
+	//Takes an associative array with the Database row as an argument.
 	function __construct($data) {
 		$this->booking_id = (isset($data['booking_id'])) ? $data['booking_id'] : "";
 		$this->status = 'Unconfirmed';
@@ -26,37 +27,34 @@ class Booking {
 	}
 
 	
-	public function save() {
-		//create a new database object.
-		$db = new DB();
+	public function save($isNewBooking = false) {
+		//create a new Database object.
+		$Database = new Database();
 		
 		//if the user is already registered and we're
 		//just updating their info.
 		if(!$isNewBooking) {
 			//set the data array
 			$data = array(
-				"start_date" => "'$this->start_date'",
-				"status" => "'$this->status'",
-				"start_date" => "'$this->start_date'",
-				"is_deleted" => "'$this->is_deleted'",
-				"booking_member_id" => "'$this->booking_member_id'",
-				"property_id" => "'$this->property_id'"
+				"start_date" => "$this->start_date",
+                "status" => "$this->status",
+				"is_deleted" => "$this->is_deleted",
+				"booking_member_id" => "$this->booking_member_id",
+				"property_id" => "$this->property_id"
 			);
 			
-			//update the row in the database
-			$db->update($data, 'Booking', 'booking_id = '.$this->booking_id);
+			//update the row in the Database
+			$Database->update($data, 'Booking', 'booking_id = '.$this->booking_id);
 		}else {
 		//if the booking is being registered for the first time.
 			$data = array(
-				"start_date" => "'$this->start_date'",
-				"status" => "'$this->status'",
-				"start_date" => "'$this->start_date'",
-				"is_deleted" => "'$this->is_deleted'",
-				"booking_member_id" => "'$this->booking_member_id'",
-				"property_id" => "'$this->property_id'"
+				"start_date" => "$this->start_date",
+                "status" => "$this->status",
+				"is_deleted" => "$this->is_deleted",
+				"booking_member_id" => "$this->booking_member_id",
+				"property_id" => "$this->property_id"
 			);
-			
-			$db->insert($data, 'booking');
+			$Database->insert($data, 'booking');
 		}
 		return true;
 	}

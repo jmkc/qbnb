@@ -1,8 +1,9 @@
 <?php
 //UserTools.class.php
 
-require_once 'Member.php';
+
 require_once 'Database.php';
+require_once 'Booking.php';
 
 class Bookingtools
 {

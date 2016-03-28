@@ -75,9 +75,9 @@ class Database
 			$values .= ($values == "") ? "'" : "', '";
 			$values .= $value;
 		}
-
+        
 		$sql = "insert into $table ($columns) values ($values')";
-
+        //echo $sql;
 		mysql_query($sql) or die(mysql_error());
 
 		//return the ID of the user in the database.

@@ -13,10 +13,11 @@ if(isset($_POST['submit-form'])) {
 
     //retrieve the $_POST variables
     $start_date = $_POST['start_date'];
+    
 
     //initialize variables for form validation
     //$success = true;
-    $Bookingtools = new Bookingtools();
+    $bookingTools = new Bookingtools();
 
     //validate that the form was filled out correctly
     //check to see if user name already exists
@@ -25,7 +26,9 @@ if(isset($_POST['submit-form'])) {
     //{
         //prep the data for saving in a new user object
         $data['start_date'] = $start_date;
-
+        $data['property_id'] = $_SESSION['property_id'];
+        $member = unserialize($_SESSION['member_id']);
+        $data['booking_member_id'] = $member->member_id;
         //create the new booking object
         $newBooking = new Booking($data);
 
