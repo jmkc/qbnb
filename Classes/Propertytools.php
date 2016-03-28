@@ -13,9 +13,10 @@ class Propertytools
 	{
 		$db = new Database();
 		$result = $db->select('Property', "property_id = $property_id");
-
 		return new Property($result);
 	}
+	
+	// 
 	
 }
 
