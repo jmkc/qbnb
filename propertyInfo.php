@@ -50,12 +50,14 @@ if(isset($_POST['backProperties'])) {
         
     $member = unserialize($_SESSION['member_id']);
     if($member->member_id == $owner_id){
-        echo"<form name='options' id='options' action='viewproperties.php' method='post'>
-<input type='submit' name='backProperties' id='backProperties' value='Back' /> 
-</form>"
+        echo"<form name='options' id='options' action='updateProperty.php' method='post'>
+<input type='submit' name='updateProp' id='updateProp' value='Update Property' /> 
+</form>";
     }
     else{
-        echo 'NO';
+        echo"<form name='options' id='options' action='bookProperty.php' method='post'>
+<input type='submit' name='bookProp' id='bookProp' value='Book Property' /> 
+</form>";;
     }
     ?>
   
