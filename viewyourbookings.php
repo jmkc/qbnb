@@ -13,7 +13,13 @@ $yourBookings = mysql_query("SELECT * FROM Booking inner join Property on Bookin
 if(isset($_POST['cancel'])) { 
     header("Location: profile.php");
 }
-
+if(isset($_POST['$booking_id'])) {
+    $booking_id = $_POST['$booking_id'];
+    echo "$booking_id";
+    $sql2 = "Update Booking SET is_deleted = 0 where booking_id = $booking_id";
+    mysql_query($sql2);// or die(mysql_error()); 
+   header("Location: profile.php");
+}
 
 ?>
 <html>
@@ -23,11 +29,11 @@ if(isset($_POST['cancel'])) {
 <body>
     <h1>View Your Bookings</h1>
  	<?php
- 	echo "<form action='viewyourbookings.php' method='post'>";
+ 	echo "<form action='profile.php' method='post'>";
  	while($booking = mysql_fetch_assoc($yourBookings))
  	{
  		extract($booking);
- 		echo "<br />Address: $address <br /> Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price - Owner: $FName $LName - Move In Date: $start_date <br />";
+ 		echo "<br />Address: $address $is_deleted <br /> Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price - Owner: $FName $LName - Move In Date: $start_date <br />";
  		$sql = "select * from Points_Of_Interest where district_id = $district_id";
         echo "Points of Interest:";
         $POIs = mysql_query($sql);
@@ -35,6 +41,8 @@ if(isset($_POST['cancel'])) {
             extract($POI);
             echo "$points_of_interest<br \>";
         }
+        
+        echo "<input type='submit' value='Delete' name='$booking_id' />";
          //echo "<input type='submit' value=$property_id name='viewproperty' />";
  	}
  	//echo "<input type='submit' value='Add Property' name='addProperty' />";
