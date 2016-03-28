@@ -19,6 +19,12 @@ $property_comments = mysql_query("SELECT * FROM Comment inner join Member on com
 if(isset($_POST['backProperties'])) { 
     header("Location: viewproperties.php");
 }
+if(isset($_POST['updateProp'])) { 
+    header("Location: viewproperties.php");
+}
+if(isset($_POST['bookProp'])) { 
+    header("Location: viewproperties.php");
+}
 ?>
  
 <html>
@@ -31,28 +37,52 @@ if(isset($_POST['backProperties'])) {
     $property = mysql_fetch_assoc($property_info);
     extract($property);
     echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price <br />";
+    
     $owner = mysql_fetch_assoc($property_owner);
     extract($owner);
+    $owner_id = $member_id;
     echo "<br/> Owned By: $FName $LName<br />";
+    
+    if(mysql_num_rows($property_bookings) == 0){
+        echo "<br/> No current bookings<br />";
+    }
+    else{
     echo "<br/> Unavailable during the weeks starting on these dates:<br />";
     while($bookings = mysql_fetch_assoc($property_bookings)){
         extract($bookings);
         echo "<br/> $start_date<br />";
     }
-    
-    
+    }
+  
+     if(mysql_num_rows($property_bookings) == 0){
+        echo "<br/> No current comments<br />";
+    }
+    else{
     echo "<br/> Comments:<br />";
     while($comments = mysql_fetch_assoc($property_comments)){
         extract($comments);
         echo "<br/> On $Date, $FName $LName said: $text<br />";
-    }    
-    
-    
+    }
+    }
+        
+    $member = unserialize($_SESSION['member_id']);
+    if($member->member_id == $owner_id){
+        echo"<form name='options' id='options' action='updateProperty.php' method='post'>
+<input type='submit' name='updateProp' id='updateProp' value='Update Property' /> 
+</form>";
+    }
+    else{
+        echo"<form name='options' id='options' action='Book.php' method='post'>
+<input type='submit' name='bookProp' id='bookProp' value='Book Property' /> 
+</form>";;
+    }
     ?>
-    
+  
+ 
  <form name='options' id='options' action='viewproperties.php' method='post'>
 <input type='submit' name='backProperties' id='backProperties' value='Back' /> 
 </form>
+
  
 </body>
 </html>

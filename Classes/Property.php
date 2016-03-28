@@ -22,7 +22,7 @@ class Property {
 		$this->number_of_rooms = (isset($data['number_of_rooms'])) ? $data['number_of_rooms'] : "";
 		$this->room_type = (isset($data['room_type'])) ? $data['room_type'] : "";
 		$this->price = (isset($price['price'])) ? $data['price'] : "";
-		$this->is_deleted = (isset($price['is_deleted'])) ? $data['is_deleted'] : "";
+		$this->is_deleted = 0;
 	}
 
 	public function save($isNewProperty = false) {

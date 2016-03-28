@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Welcome to mysite</title>
+        <title>Welcome to Qbnb</title>
   
     </head>
 <body>
@@ -29,7 +29,11 @@ $member = unserialize($_SESSION['member_id']);
     include_once 'config/connection.php'; 
    header("Location: viewyourproperties.php");
  }
- 
+ if(isset($_POST['viewYourBooks']) && isset($_SESSION['member_id'])){
+  // include database connection
+    include_once 'config/connection.php'; 
+   header("Location: viewYourBookings.php");
+ }
   if(isset($_POST['logoutBtn']) && isset($_SESSION['member_id'])){
   // include database connection
     include_once 'config/connection.php'; 
@@ -96,6 +100,12 @@ Welcome,  <?php echo $member->FName; ?>, to QBnB your number one source for shar
             <td></td>
             <td>
                 <input type='submit' name='viewYourProps' id='viewYourProps' value='View Your Properties' /> 
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type='submit' name='viewYourBooks' id='viewYourBooks' value='View Your Bookings' /> 
             </td>
         </tr>
         <tr>
