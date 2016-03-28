@@ -26,15 +26,16 @@ if(isset($_POST['addProperty'])) {
     <title>Qbnb | View All Properties</title>
 </head>
 <body>
+    <h1> View all Properties</h1>
  	<?php
  	echo "<form action='viewproperties.php' method='post'>";
  	while($property = mysql_fetch_assoc($allProperties))
  	{
  		extract($property);
  		echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price <br />";
- 		echo "<input type='submit' value=$property_id name='viewproperty' />";
+ 		echo "View Property: <input type='submit' value=$property_id name='viewproperty' /><br/>";
  	}
- 	echo "<input type='submit' value='Add Property' name='addProperty' />";
+ 	echo "<br/><input type='submit' value='Add Property' name='addProperty' />";
  	echo "<input type='submit' value='Cancel' name='cancel' /></form>";
  	?>
 </body>
