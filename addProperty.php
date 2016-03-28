@@ -39,6 +39,10 @@ if(isset($_POST['submit-form'])) {
     $message = "Settings Saved<br/>";
 }
  
+if(isset($_POST['back'])) { 
+    header("Location: viewproperties.php");
+}
+
 //If the form wasn't submitted, or didn't validate
 //then we show the registration form again
 ?>
@@ -50,11 +54,12 @@ if(isset($_POST['submit-form'])) {
 <body>
  
     <form action="addProperty.php" method="post">
-    address: <input type='text' name='address' id='address'  value="<?php echo $address; ?>"/><br/>
-    number_of_rooms: <input type='text' name='number_of_rooms' id='number_of_rooms'  value="<?php echo $number_of_rooms; ?>"/><br/>
-    room_type: <input type='text' name='room_type' id='room_type'  value"<?php echo $room_type; ?>" /><br/>
-    Price:  <input type='text' name='price' id='price'  value"<?php echo $price; ?>" /><br/>
-    <input type="submit" value="Update Property" name="submit-updateProperty" />
+    address: <input type='text' name='address' id='Address'  value=""/><br/>
+    number_of_rooms: <input type='text' name='Number of Rooms' id='number_of_rooms'  value=""/><br/>
+    room_type: <input type='text' name='Room Type' id='room_type'  value"" /><br/>
+    Price:  <input type='text' name='Price' id='price'  value"" /><br/>
+    <input type="submit" value="Submit Update" name="submit-updateProperty" />
+    <input type='submit' value='Back' name='back' /></form>;
     </form>
 </body>
 </html>
