@@ -12,7 +12,7 @@ $start_date = "";
 if(isset($_POST['submit-form'])) { 
 
     //retrieve the $_POST variables
-    $comment = $_POST['comment'];
+    $text = $_POST['text'];
     $rating = $_POST['rating'];
     
 
@@ -20,7 +20,7 @@ if(isset($_POST['submit-form'])) {
     //$success = true;
     $CommentTools = new Commenttools();
 
-        $data['comment'] = $comment;
+        $data['text'] = $text;
         $data['rating'] = $rating;
         $data['property_id'] = $_SESSION['property_id'];
         $member = unserialize($_SESSION['member_id']);
@@ -52,7 +52,7 @@ if(isset($_POST['cancel-reg'])) {
 <body>
     <?php //echo ($error != "") ? $error : ""; ?>
     <form action="makeComment.php" method="post">
-    Comment: <input type='text' name='comment' id='comment' /><br/>
+    Comment: <input type='text' name='text' id='text' /><br/>
     Rating: <input type='int' name='rating' id='rating' /><br/>
     <input type="submit" value="Comment" name="submit-form" />
     <input type="submit" value="Cancel" name="cancel-reg" />

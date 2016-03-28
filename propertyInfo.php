@@ -57,7 +57,7 @@ if(isset($_POST['comment'])) {
     }
     }
   
-     if(mysql_num_rows($property_bookings) == 0){
+     if(mysql_num_rows($property_comments) == 0){
         echo "<br/> No current comments<br />";
     }
     else{
