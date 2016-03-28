@@ -57,14 +57,18 @@ if(isset($_POST['submit-updateDeny'])) {
     }
     echo "</form>";
     ?>
-    
-    <form action='viewPendingBookings.php' method='post'>
+    <?php if(mysql_num_rows($allProperties)!=0){
+        echo "<form action='viewPendingBookings.php' method='post'>
         Booking ID: 
         <input type='text' value='Booking ID' name='booking_id' />
         <input type='submit' value='Confirm' name='submit-updateConfirm' />
         <input type='submit' value='Deny' name='submit-updateDeny' />
-    </form>
-    <form action="profile.php" method="post">
+    </form>";
+    } else{
+        echo "No pending bookings";
+    }
+    ?>
+    <form action='profile.php' method='post'>
     <input type='submit' value='Cancel' name='cancel' />
     </form>
 </body>
