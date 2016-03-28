@@ -6,48 +6,19 @@ require_once 'global.inc.php';
 if(!isset($_SESSION['logged_in'])) {
     header("Location: index.php");
 }
-if(!isset($_SESSION['property_id'])) {
-    header("Location: viewproperties.php");
-}
+//if(!isset($_SESSION['property_id'])) {
+//    header("Location: viewproperties.php");
+//}
 //get the user object from the session
 $property_id = $_SESSION['property_id'];
- 
-//initialize php variables used in the form
-$email = $member->email;
-$firstName = $member->firstName;
-$lastName = $member->lastName;
-$year = $member->year;
-$faculty = $member->faculty;
-$degree = $member->degree;
-$message = "";
- 
-//check to see that the form has been submitted
-if(isset($_POST['submit-updateProfile'])) { 
- 
-    //retrieve the $_POST variables
-    $password = $_POST['password'];
-    $email = $_POST['email'];
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $year = $_POST['year'];
-    $faculty = $_POST['faculty'];
-    $degree = $_POST['degree'];
-    $password_confirm = $_POST['password-confirm'];
- 
-    $member->email = $email;
-    $member->password = $password;
-    $member->firstName = $firstName;
-    $member->lastName = $lastName;
-    $member->year = $year;
-    $member->faculty = $faculty;
-    $member->degree = $degree;
-    $member->save();
- 
-    $message = "Settings Saved<br/>";
+$property_info = mysql_query("SELECT * FROM Property WHERE property_id = $property_id");
+$property_bookings = mysql_query("SELECT * FROM Booking WHERE property_id = $property_id and status = 'Confirmed'");
+$property_owner = mysql_query("SELECT * FROM Member WHERE member_id = (SELECT owner_id FROM Property WHERE property_id = $property_id)");
+$property_comments = mysql_query("SELECT * FROM Comment WHERE property_id = $property_id");
+
+if(isset($_POST['backProperties'])) { 
+    header("Location: viewproperties.php");
 }
- 
-//If the form wasn't submitted, or didn't validate
-//then we show the registration form again
 ?>
  
 <html>
@@ -55,18 +26,28 @@ if(isset($_POST['submit-updateProfile'])) {
     <title>Qbnb | Update Profile</title>
 </head>
 <body>
-    <?php echo $message; ?>
- 
-    <form action="updateProfile.php" method="post">
-    First Name: <input type='text' name='firstName' id='firstName'  value="<?php echo $firstName; ?>" /><br/>
-    Last Name: <input type='text' name='lastName' id='lastName'  value="<?php echo $lastName; ?>"/><br/>
-    Year: <input type='text' name='year' id='year'  value="<?php echo $year; ?>"/><br/>
-    Faculty: <input type='text' name='faculty' id='faculty'  value="<?php echo $faculty; ?>"/><br/>
-    Degree: <input type='text' name='degree' id='degree'  value"<?php echo $email; ?>" /><br/>
-    Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
-    Password (confirm): <input type="password" value="<?php echo $password_confirm; ?>" name="password-confirm" /><br/>
+    <?php
     
-    <input type="submit" value="Update Profile" name="submit-updateProfile" />
-    </form>
+    $property = mysql_fetch_assoc($property_info);
+    extract($property);
+    echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price <br />";
+    $owner = mysql_fetch_assoc($property_owner);
+    extract($owner);
+    echo "<br/> Owned By: $FName $LName<br />";
+    $bookings = mysql_fetch_assoc($property_bookings);
+    extract($bookings);
+    echo "<br/> Unavailable during these periods: $start_date<br />";
+    $comments = mysql_fetch_assoc($property_comments);
+    extract($comments);
+    echo "<br/> Comments: $text<br />";
+        
+    
+    
+    ?>
+    
+ <form name='options' id='options' action='viewproperties.php' method='post'>
+<input type='submit' name='backProperties' id='backProperties' value='Back' /> 
+</form>
+ 
 </body>
 </html>
