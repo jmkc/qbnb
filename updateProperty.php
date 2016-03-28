@@ -10,11 +10,12 @@ if(!isset($_SESSION['logged_in'])) {
 //get the user object from the session
 $data['property_id'] = $_SESSION['property_id'];
  
+$properties = "Select * from Property WHERE property_id = $property_id";
 //initialize php variables used in the form
 $number_of_rooms = "";
 $room_type = "";
 $price = "";
- 
+
 //check to see that the form has been submitted
 if(isset($_POST['submit-updateProperty'])) { 
  

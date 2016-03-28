@@ -26,6 +26,7 @@ if(isset($_POST['submit-form'])) {
     $year = $_POST['year'];
     $faculty = $_POST['faculty'];
     $degree = $_POST['degree'];
+    $phone_number = $_POST['phone_number'];
     $password_confirm = $_POST['password-confirm'];
 
     //initialize variables for form validation
@@ -88,6 +89,7 @@ if(isset($_POST['cancel-reg'])) {
     Degree: <input type='text' name='degree' id='degree'/><br/>
     Faculty: <input type='text' name='faculty' id='faculty'/><br/>
     Graduating Year: <input type='text' name='year' id='year'/><br/>
+    Phone Number: <input type='text' name='phone' id='phone'/><br/>
     Password: <input type='password' name='password' id='password' /><br/>
     Password (confirm): <input type="password" name="password-confirm" id='password-confirm'/><br/>
     <input type="submit" value="Register" name="submit-form" />
