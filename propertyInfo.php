@@ -46,6 +46,7 @@ if(isset($_POST['delete'])) {
     <title>Qbnb | Update Profile</title>
 </head>
 <body>
+    <h1>Property Information</h1>
     <?php
     
     $property = mysql_fetch_assoc($property_info);
