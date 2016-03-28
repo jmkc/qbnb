@@ -10,7 +10,7 @@ if(!isset($_SESSION['logged_in'])) {
 //get the user object from the session
 $data['property_id'] = $_SESSION['property_id'];
  
-$properties = "Select * from Property WHERE property_id = $property_id";
+//$properties = "Select * from Property WHERE property_id = $property_id";
 //initialize php variables used in the form
 $number_of_rooms = "";
 $room_type = "";
@@ -42,7 +42,9 @@ if(isset($_POST['addFeature'])) {
  
     //retrieve the $_POST variables
     $feature = $_POST['feature'];
+    $property_id = $_SESSION['property_id'];
     $featureData['feature'] = $feature;
+    $featureData['property_id']= $property_id;
     $db->insert($featureData, 'Feature');
 }
  
@@ -56,12 +58,14 @@ if(isset($_POST['addFeature'])) {
 </head>
 <body>
     <?php //echo $message; ?>
- 
+    <h1>Update Property</h1>
+    <h2>Update Property Info</h2>
     <form action="updateProperty.php" method="post">
     Number of Rooms: <input type='text' name='number_of_rooms' id='number_of_rooms'  value="<?php echo $number_of_rooms; ?>"/><br/>
     Room Type: <input type='text' name='room_type' id='room_type'  value="<?php echo $room_type; ?>" /><br/>
     Price:  <input type='text' name='price' id='price'  value="<?php echo $price; ?>" /><br/>
     <input type="submit" value="Update Property" name="submit-updateProperty" /><br/><br/>
+    <h2>Update Property Features</h2>
     Feature: <input type='text' name='feature' id='feature'  value="" /><br/>
     <input type="submit" value="Add Additonal Feature" name="addFeature" /><br/>
     </form>
