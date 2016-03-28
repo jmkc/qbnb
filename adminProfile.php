@@ -35,7 +35,7 @@ if(isset($_POST['viewAdminMembersBtn']) && isset($_SESSION['member_id'])){
  }
 if(isset($_POST['viewPOIBtn']) && isset($_SESSION['member_id'])){
 	include_once 'config/connection.php';
-	header("Location: viewAdminPOI.php");
+	header("Location: newPOI.php");
 	die();
 }
 ?>
