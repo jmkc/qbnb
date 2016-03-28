@@ -20,6 +20,7 @@ class Member
     public $is_admin;
     public $is_deleted;
 	public $bookings;
+	public $properties;
 
 	//Constructor is called whenever a new object is created.
 	//Takes an associative array with the DB row as an argument.
@@ -35,17 +36,31 @@ class Member
         $this->is_admin = 0;
         $this->is_deleted = 0;
 		$this->bookings = []; // declare empty array
+		$this->properties = [];
 	}
 	
 	// Gets all bookings for this user and refreshes the instance property
 	public function getAllBookings(){
 		$db = new Database();
 		$array = $db->select('booking','booking_member_id='.$this->member_id);
+		$this->bookings = [];
 		foreach ($array as $booking_data){
 			$booking = new Booking($array);
 			array_push($this->bookings, $booking);
 		}
 		return $this->bookings;
+	}
+	
+	// Gets all properties for this user and refreshes the instance property
+	public function getAllProperties(){
+		$db = new Database();
+		$array = $db->select('properties','owner_id='.$this->member_id);
+		$this->properties = [];
+		foreach ($array as $property_data){
+			$property = new Property($array);
+			array_push($this->properties, $property);
+		}
+		return $this->properties;
 	}
 	
 	

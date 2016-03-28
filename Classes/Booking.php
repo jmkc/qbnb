@@ -25,11 +25,27 @@ class Booking {
 		$this->booking_member_id = (isset($data['booking_member_id'])) ? $data['booking_member_id'] : "";
 		$this->property_id = (isset($data['property_id'])) ? $data['property_id'] : "";
 	}
+	
+	// Alters the booking status to newStatus and stores changes in database
+	public function alterBooking($newStatus){
+		$db = new Database();
+		$this->status= $newStatus;
+		$data = array(
+			"status" => "'$this->status'"
+		);
+		$db->update($data, 'Booking', 'booking_id = '.$this->booking_id);
+	}
 
 	
+<<<<<<< HEAD
 	public function save($isNewBooking = false) {
 		//create a new Database object.
 		$Database = new Database();
+=======
+	public function save() {
+		//create a new database object.
+		$db = new Database();
+>>>>>>> origin/master
 		
 		//if the user is already registered and we're
 		//just updating their info.
