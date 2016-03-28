@@ -4,6 +4,7 @@ require_once 'global.inc.php';
 $member = unserialize($_SESSION['member_id']);
 $member_view_id = $_SESSION['member_view_id'];
 // $mesmber_view_id = $member_view->member_id;
+$member_info = mysql_query("Select * from Member WHERE member_id = $member_view_id");
 $supplierBookings = mysql_query("SELECT booking.status, booking.start_date, property.address 
 FROM Booking INNER JOIN Member on Booking.booking_member_id = Member.member_id 
 INNER JOIN Property on Booking.property_id = property.property_id WHERE property.owner_id = $member_view_id");
@@ -51,7 +52,14 @@ if(isset($_POST['cancel'])) {
     </head>
 <body>
 Welcome, Administrator <?php echo $member->FName; ?> <br/>
-You are looking at the <?php echo $member_view_id; ?> profile.<br/>
+You are looking at the <?php 
+while($member_information = mysql_fetch_assoc($member_info))
+{
+    extract($member_information);
+    echo "$FName";
+}
+?>
+'s profile.<br/>
 <form action='adminDeleteMember.php' method='post'>
     <input type='submit' value='Delete Member' name='delete' /> 
 </form>
