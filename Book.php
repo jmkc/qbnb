@@ -54,9 +54,9 @@ if(isset($_POST['cancel-reg'])) {
     <title>Qbnb | Book Property</title>
 </head>
 <body>
-    <?php echo ($error != "") ? $error : ""; ?>
+    <?php //echo ($error != "") ? $error : ""; ?>
     <form action="Book.php" method="post">
-    Start Date: <input type='date' name='start_date' id='start_date' /><br/>
+    Start Date (YYYY-MM-DD): <input type='date' name='start_date' id='start_date' /><br/>
     <input type="submit" value="Book" name="submit-form" />
     <input type="submit" value="Cancel" name="cancel-reg" />
     </form>
