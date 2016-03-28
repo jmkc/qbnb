@@ -56,15 +56,18 @@ if(isset($_POST['delete'])) {
     extract($owner);
     $owner_id = $member_id;
     echo "<br/> Owned By: $FName $LName<br />";
-    echo "<h2> Features</h2>";
     if(mysql_num_rows($feature_info) != 0){
+        echo "<h2> Features</h2>";
         while($features = mysql_fetch_assoc($feature_info)){
             extract($features);
             echo "<br/> $feature<br />";
         }
     }
+    else{
+        echo "<h2> No available features</h2>";
+    }
     if(mysql_num_rows($property_bookings) == 0){
-        echo "<br/> No current bookings<br />";
+        echo "<h2> No current bookings</h2>";
     }
     else{
         echo "<h2> Unavailable during the weeks starting on these dates:</h2>";
