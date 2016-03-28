@@ -62,7 +62,12 @@ if(isset($_POST['back'])) {
     Number of Rooms: <input type='text' name='number_of_rooms' id='number_of_rooms'  value=""/><br/>
     Room Type: <input type='text' name='room_type' id='room_type'  value="" /><br/>
     Price:  <input type='text' name='price' id='price'  value="" /><br/>
-    District ID:  <input type='text' name='district_id' id='district_id'  value="" /><br/>
+    District
+<select name="formGender">
+  <option value="1">Downtown</option>
+  <option value="2">Uptown</option>
+  <option value="3">Midtown</option>
+</select>
     <input type="submit" value="Add Property" name="submit-addProperty" />
     <input type='submit' value='Back' name='back' /></form>
     </form>
