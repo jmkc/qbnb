@@ -1,8 +1,9 @@
 <?php
 
-//User.class.php
+//Bookings.php
 
-require_once 'DB.php';
+require_once 'Database.php';
+
 
 
 class Comment {
@@ -12,44 +13,50 @@ class Comment {
 	public $text;
 	public $Date;
     public $is_deleted;
-
+    public $commenting_member_id;
+    public $property_id;
 	//Constructor is called whenever a new object is created.
-	//Takes an associative array with the DB row as an argument.
+	//Takes an associative array with the Database row as an argument.
 	function __construct($data) {
 		$this->comment_id = (isset($data['comment_id'])) ? $data['comment_id'] : "";
 		$this->rating = (isset($data['rating'])) ? $data['rating'] : "";
 		$this->text = (isset($data['text'])) ? $data['text'] : "";
-		$this->Date = (isset($data['Date'])) ? $data['Date'] : "";
-        $this->is_deleted = (isset($data['is_deleted'])) ? $data['is_deleted'] : "";
+		$this->property_id = (isset($data['property_id'])) ? $data['property_id'] : "";
+		$this->commenting_member_id = (isset($data['commenting_member_id'])) ? $data['commenting_member_id'] : "";
+		$this->Date = 0000-00-00;
+        $this->is_deleted = 0;
 	}
-
+	
 	public function save($isNewComment = false) {
-		//create a new database object.
-		$db = new DB();
+		//create a new Database object.
+		$Database = new Database();
 		
 		//if the user is already registered and we're
 		//just updating their info.
-		if(!$isNewUser) {
+		if(!$isNewComment) {
 			//set the data array
 			$data = array(
-				"comment_id" => "'$this->comment_id'",
-				"rating" => "'$this->rating'",
-				"password" => "'$this->password'"
+				"rating" => $this->rating,
+                "text" => $this->text,
+				"is_deleted" => $this->is_deleted,
+				"Date" => $this->Date,
+				"commenting_member_id" => $this->commenting_member_id,
+				"property_id" => $this->property_id
 			);
 			
-			//update the row in the database
-			$db->update($data, 'users', 'id = '.$this->id);
+			//update the row in the Database
+			$Database->update($data, 'Booking', 'booking_id = '.$this->booking_id);
 		}else {
-		//if the user is being registered for the first time.
+		//if the booking is being registered for the first time.
 			$data = array(
-				"username" => "'$this->username'",
-				"password" => "'$this->hashedPassword'",
-				"rating" => "'$this->rating'",
-				"join_date" => "'".date("Y-m-d H:i:s",time())."'"
+				"rating" => $this->rating,
+                "text" => $this->text,
+				"is_deleted" => $this->is_deleted,
+				"Date" => $this->Date,
+				"commenting_member_id" => $this->commenting_member_id,
+				"property_id" => $this->property_id
 			);
-			
-			$this->id = $db->insert($data, 'users');
-			$this->joinDate = time();
+			$Database->insert($data, 'Comment');
 		}
 		return true;
 	}
