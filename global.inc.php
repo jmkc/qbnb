@@ -5,6 +5,8 @@ require_once 'Classes/Usertools.php';
 require_once 'Classes/Database.php';
 require_once 'Classes/Booking.php';
 require_once 'Classes/Bookingtools.php';
+require_once 'Classes/Property.php';
+require_once 'Classes/Propertytools.php';
 
 //connect to the database
 $db = new Database();

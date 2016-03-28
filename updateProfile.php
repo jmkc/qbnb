@@ -24,7 +24,7 @@ if(isset($_POST['submit-updateProfile'])) {
  
     //retrieve the $_POST variables
     $password = $_POST['password'];
-    $email = $_POST['email'];
+    //$email = $_POST['email'];
     $FName = $_POST['FName'];
     $LName = $_POST['LName'];
     $year = $_POST['year'];

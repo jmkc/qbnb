@@ -74,9 +74,14 @@ class Member
 		if(!$isNewUser) {
 			//set the data array
 			$data = array(
-				"member_id" => $this->member_id,
-				"email" => $this->email,
-				"password" => $this->password
+				"password" => $this->password,
+                "FName" => $this->FName,
+                "LName" => $this->LName,
+                "year" => $this->year,
+                "faculty" => $this->faculty,
+                "degree" => $this->degree,
+                "is_admin" => $this->is_admin,
+                "is_deleted" => $this->is_deleted
 			);
 			
 			//update the row in the database

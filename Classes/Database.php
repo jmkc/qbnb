@@ -53,10 +53,22 @@ class Database
 	//and the values are the data that will be inserted into those columns.
 	//$table is the name of the table and $where is the sql where clause.
 	public function update($data, $table, $where) {
+        $columns = "";
+		$values = "";
+
 		foreach ($data as $column => $value) {
-			$sql = "UPDATE $table SET $column = $value WHERE $where";
-			mysql_query($sql) or die(mysql_error());
+			$sql = "UPDATE $table SET $column = '$value' WHERE $where";
+            echo $sql;
+           mysql_query($sql) or die(mysql_error());
 		}
+        // $sql = "UPDATE $table SET ($columns) = ($values') WHERE $where";
+        echo $sql;
+        // mysql_query($sql) or die(mysql_error());
+		// foreach ($data as $column => $value) {
+		// 	$sql = "UPDATE $table SET $column = $value WHERE $where";
+        //     echo $sql;
+		// 	mysql_query($sql) or die(mysql_error());
+		// }
 		return true;
 	}
 
@@ -77,7 +89,8 @@ class Database
 		}
         
 		$sql = "insert into $table ($columns) values ($values')";
-        //echo $sql;
+        echo $sql;
+        
 		mysql_query($sql) or die(mysql_error());
 
 		//return the ID of the user in the database.
