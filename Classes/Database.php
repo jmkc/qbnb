@@ -58,16 +58,8 @@ class Database
 
 		foreach ($data as $column => $value) {
 			$sql = "UPDATE $table SET $column = '$value' WHERE $where";
-            echo $sql;
            mysql_query($sql) or die(mysql_error());
 		}
-        // $sql = "UPDATE $table SET ($columns) = ($values') WHERE $where";
-        // mysql_query($sql) or die(mysql_error());
-		// foreach ($data as $column => $value) {
-		// 	$sql = "UPDATE $table SET $column = $value WHERE $where";
-        //     echo $sql;
-		// 	mysql_query($sql) or die(mysql_error());
-		// }
 		return true;
 	}
 

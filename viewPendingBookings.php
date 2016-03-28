@@ -9,7 +9,7 @@ if(!isset($_SESSION['logged_in'])) {
  
 //get the user object from the session
 $member = unserialize($_SESSION['member_id']);
-$data['member_id'] = $member->member_id;
+$message = "";
 
 $allProperties = mysql_query("SELECT * 
     FROM Property natural join Booking 
@@ -19,29 +19,27 @@ $allProperties = mysql_query("SELECT *
 
 //check to see that the form has been submitted
 if(isset($_POST['submit-updateConfirm'])) { 
- 
-    //retrieve the $_POST variables
-
     $data['status'] = 'Confirmed';
-    $data['booking_id'] = $booking_id;
-    $data['property_id'] = $property_id;
-    $data['start_date'] = $_POST['start_date'];
-    $data['is_deleted'] = $is_deleted;
-    $data['booking_member_id'] = $booking_member_id;
-    $updateBooking = new Booking($data);
-    $updateProperty->save();
- 
-    $message = "Settings Saved<br/>";
+    $booking_id = $_POST['booking_id'];
+    if (is_numeric($booking_id)){
+        $db->update($data, 'Booking', 'booking_id = '.$booking_id);
+        header("Location: viewPendingBookings.php");    
+    } else {
+        $message = "Please enter a number";
+    }
 }
 
-//if(isset($_POST['submit-updateProperty'])) { 
- 
-    //retrieve the $_POST variables
-//    header("Location: propertyInfo.php");
-//}
- 
-//If the form wasn't submitted, or didn't validate
-//then we show the registration form again
+//check to see that the form has been submitted
+if(isset($_POST['submit-updateDeny'])) { 
+    $data['status'] = 'Denied';
+    $booking_id = $_POST['booking_id'];
+    if (is_numeric($booking_id)){
+        $db->update($data, 'Booking', 'booking_id = '.$booking_id);
+        header("Location: viewPendingBookings.php");    
+    } else {
+        $message = "Please enter a number";
+    }
+}
 ?>
  
 <html>
@@ -49,17 +47,23 @@ if(isset($_POST['submit-updateConfirm'])) {
     <title>Qbnb | Update Property</title>
 </head>
 <body>
+    <?php echo $message ?>
     <?php
     echo "<form action='viewPendingBookings.php' method='post'>";
     while($booking = mysql_fetch_assoc($allProperties))
     {
         extract($booking);
-        echo "<br />Address: $address - Date: $start_date - Status: $status<br />";
-        echo "<input type='submit' value='Confirm' name='submit-updateConfirm' />";
-        echo "<input type='submit' value='Deny' name='submit-updateDeny' />";
+        echo "<br />Booking ID: $booking_id - Address: $address - Date: $start_date - Status: $status<br />";
     }
     echo "</form>";
     ?>
+    
+    <form action='viewPendingBookings.php' method='post'>
+        Booking ID: 
+        <input type='text' value='Booking ID' name='booking_id' />
+        <input type='submit' value='Confirm' name='submit-updateConfirm' />
+        <input type='submit' value='Deny' name='submit-updateDeny' />
+    </form>
     <form action="profile.php" method="post">
     <input type='submit' value='Cancel' name='cancel' />
     </form>

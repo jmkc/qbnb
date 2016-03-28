@@ -110,7 +110,7 @@ Welcome,  <?php echo $member->FName; ?>, to QBnB your number one source for shar
 		<?php
 			// Include the admin button if and only if the user is an admin
 			include_once 'config/connection.php';
-			include_once 'Classes/UserTools.php';
+			//include_once 'Classes/UserTools.php';
 			$userTool = new UserTools();
 			if ($userTool->checkAdmin($member->email)) 
 			{
