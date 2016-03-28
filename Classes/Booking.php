@@ -37,15 +37,9 @@ class Booking {
 	}
 
 	
-<<<<<<< HEAD
 	public function save($isNewBooking = false) {
 		//create a new Database object.
 		$Database = new Database();
-=======
-	public function save() {
-		//create a new database object.
-		$db = new Database();
->>>>>>> origin/master
 		
 		//if the user is already registered and we're
 		//just updating their info.
