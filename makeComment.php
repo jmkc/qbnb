@@ -50,10 +50,18 @@ if(isset($_POST['cancel-reg'])) {
     <title>Qbnb | Comment on Property</title>
 </head>
 <body>
+    <h1>Make a comment</h1>
     <?php //echo ($error != "") ? $error : ""; ?>
     <form action="makeComment.php" method="post">
     Comment: <input type='text' name='text' id='text' /><br/>
-    Rating: <input type='int' name='rating' id='rating' /><br/>
+    Rating: <select name="rating">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+</select>
+    <br/>
     <input type="submit" value="Comment" name="submit-form" />
     <input type="submit" value="Cancel" name="cancel-reg" />
     </form>
