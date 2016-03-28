@@ -33,8 +33,8 @@ class Member
         $this->year = (isset($data['year'])) ? $data['year'] : "";
         $this->faculty = (isset($data['faculty'])) ? $data['faculty'] : "";
         $this->degree = (isset($data['degree'])) ? $data['degree'] : "";
-        $this->is_admin = 0;
-        $this->is_deleted = 0;
+        $this->is_admin = (isset($data['is_admin'])) ? $data['is_admin'] : "";
+        $this->is_deleted = (isset($data['is_deleted'])) ? $data['is_admin'] : "";
 		$this->bookings = []; // declare empty array
 		$this->properties = [];
 	}
@@ -96,8 +96,8 @@ class Member
                 "year" => $this->year,
                 "faculty" => $this->faculty,
                 "degree" => $this->degree,
-                "is_admin" => $this->is_admin,
-                "is_deleted" => $this->is_deleted
+                "is_admin" => 0,
+                "is_deleted" => 0
 			);
 			
 			$db->insert($data, 'Member');

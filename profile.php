@@ -2,39 +2,41 @@
 <html>
     <head>
         <title>Welcome to Qbnb</title>
-  
     </head>
 <body>
+
 <?php
 require_once 'global.inc.php';
 $member = unserialize($_SESSION['member_id']);
-  //Create a user session or resume an existing one
- //session_start();
- ?>
-<?php
+
+
  if(isset($_POST['updateBtn']) && isset($_SESSION['member_id'])){
-  // include database connection
     include_once 'config/connection.php'; 
     header("Location: updateProfile.php");
+	die();
  }
   if(isset($_POST['viewProps']) && isset($_SESSION['member_id'])){
-  // include database connection
     include_once 'config/connection.php'; 
    header("Location: viewproperties.php");
+   die();
  }
  if(isset($_POST['viewYourBooks']) && isset($_SESSION['member_id'])){
-  // include database connection
     include_once 'config/connection.php'; 
    header("Location: viewYourBookings.php");
+   die();
  }
   if(isset($_POST['logoutBtn']) && isset($_SESSION['member_id'])){
-  // include database connection
     include_once 'config/connection.php'; 
     $userTools = new UserTools();
     $userTools->logout();
    header("Location: index.php");
+   die();
  }
- 
+  if(isset($_POST['AdminBtn']) && isset($_SESSION['member_id'])){
+    include_once 'config/connection.php'; 
+	header("Location: adminProfile.php");
+	die();
+ }
 
  
  ?>
@@ -73,10 +75,6 @@ Welcome,  <?php echo $member->FName; ?>, to QBnB your number one source for shar
 <!-- Update profile-->
 <form name='options' id='options' action='profile.php' method='post'>
     <table border='0'>
-        <!--<tr>
-            <td>Username</td>
-            <td><input type='text' name='username' id='username' disabled  value="<?php echo $myrow['username']; ?>"  /></td>
-        </tr>-->
         <tr>
             <td></td>
             <td>
@@ -101,6 +99,24 @@ Welcome,  <?php echo $member->FName; ?>, to QBnB your number one source for shar
                 <input type='submit' name='viewBooks' id='viewBooks' value='View Your Pending Bookings' /> 
             </td>
         </tr>
+		
+		<?php
+			// Include the admin button if and only if the user is an admin
+			include_once 'config/connection.php';
+			include_once 'Classes/UserTools.php';
+			$userTool = new UserTools();
+			if ($userTool->checkAdmin($member->email)) 
+			{
+				?> 
+				<tr>
+					<td></td>
+					<td>
+						<input type='submit' name='AdminBtn' id='AdminBtn' value='Admin' />
+					</td>
+				</tr>
+				<?php
+			}
+		?>
          <tr>
             <td></td>
             <td>

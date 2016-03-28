@@ -13,7 +13,6 @@ class Usertools
 	//and store the user object within.
 	public function login($email, $password)
 	{
-
 		$result = mysql_query("SELECT * FROM Member WHERE email = '$email' AND password = '$password'");
 		if(mysql_num_rows($result) == 1)
 		{
@@ -44,6 +43,21 @@ class Usertools
 			return false;
 	   	}else{
 	   		return true;
+		}
+	}
+	
+	// Check to see if the member is an admin
+	public function checkAdmin($email) {
+		$db = new Database();
+		$result = $db->select('Member', "email= '$email'");
+		$member = new Member($result);
+		if ($member->is_admin == 1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 	

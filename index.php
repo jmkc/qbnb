@@ -23,18 +23,17 @@ if(isset($_SESSION['member_id'])){
 }
 ?>
 <?php
-//check if the login form has been submitted
 if(isset($_POST['loginBtn'])){
- 
-    // include database connection
     include_once 'config/connection.php'; 
 	$email = $_POST['email'];
 	$password = $_POST['password'];
     $userTools = new UserTools();
-	if($userTools->login($email, $password)){
-		//successful login, redirect them to a page
+	if($userTools->login($email, $password))
+	{
 		header("Location: profile.php");
-	}else{
+	}
+	else
+	{
 		$error = "Incorrect username or password. Please try again.";
 	}   
  }
@@ -44,7 +43,6 @@ if(isset($_POST['loginBtn'])){
  }
  
 ?>
-<!-- dynamic content will be here -->
  <form name='login' id='login' action='index.php' method='post'>
     <table border='0'>
         <tr>
