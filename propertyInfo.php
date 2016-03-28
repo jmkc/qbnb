@@ -81,9 +81,13 @@ if(isset($_POST['comment'])) {
     }
     ?>
   
- 
- <form name='options' id='options' action='viewproperties.php' method='post'>
+<form name='options' id='options' action='makeComment.php' method='post'>
 <input type='submit' name='comment' id='comment' value='Comment' /> 
+</form>
+ 
+ 
+
+<form name='options' id='options' action='viewproperties.php' method='post'>
 <input type='submit' name='backProperties' id='backProperties' value='Back' /> 
 </form>
 
