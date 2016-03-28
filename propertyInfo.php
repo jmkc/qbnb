@@ -25,6 +25,9 @@ if(isset($_POST['updateProp'])) {
 if(isset($_POST['bookProp'])) { 
     header("Location: viewproperties.php");
 }
+if(isset($_POST['comment'])) { 
+    header("Location: makeComment.php");
+}
 ?>
  
 <html>
@@ -80,6 +83,7 @@ if(isset($_POST['bookProp'])) {
   
  
  <form name='options' id='options' action='viewproperties.php' method='post'>
+<input type='submit' name='comment' id='comment' value='Comment' /> 
 <input type='submit' name='backProperties' id='backProperties' value='Back' /> 
 </form>
 
