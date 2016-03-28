@@ -17,17 +17,10 @@ $member = unserialize($_SESSION['member_id']);
     include_once 'config/connection.php'; 
     header("Location: updateProfile.php");
  }
- 
   if(isset($_POST['viewProps']) && isset($_SESSION['member_id'])){
   // include database connection
     include_once 'config/connection.php'; 
    header("Location: viewproperties.php");
- }
- 
- if(isset($_POST['viewYourProps']) && isset($_SESSION['member_id'])){
-  // include database connection
-    include_once 'config/connection.php'; 
-   header("Location: viewyourproperties.php");
  }
  if(isset($_POST['viewYourBooks']) && isset($_SESSION['member_id'])){
   // include database connection
@@ -94,12 +87,6 @@ Welcome,  <?php echo $member->FName; ?>, to QBnB your number one source for shar
             <td></td>
             <td>
                 <input type='submit' name='viewProps' id='viewProps' value='View All Properties' /> 
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type='submit' name='viewYourProps' id='viewYourProps' value='View Your Properties' /> 
             </td>
         </tr>
         <tr>
