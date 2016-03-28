@@ -52,5 +52,8 @@ if(isset($_POST['submit-updateProperty'])) {
     Price:  <input type='text' name='price' id='price'  value"<?php echo $price; ?>" /><br/>
     <input type="submit" value="Update Property" name="submit-updateProperty" />
     </form>
+    <form action="propertyInfo.php" method="post">
+    <input type="submit" value="Back" name="backProperty" />
+    </form>
 </body>
 </html>
