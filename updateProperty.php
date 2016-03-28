@@ -34,14 +34,16 @@ if(isset($_POST['submit-updateProperty'])) {
     
     $updateProperty = new Property($data);
     $updateProperty->save();
- 
+    header("Location: propertyInfo.php");
     $message = "Settings Saved<br/>";
 }
 
-if(isset($_POST['submit-updateProperty'])) { 
+if(isset($_POST['addFeature'])) { 
  
     //retrieve the $_POST variables
-    header("Location: propertyInfo.php");
+    $feature = $_POST['feature'];
+    $featureData['feature'] = $feature;
+    $db->insert($featureData, 'Feature');
 }
  
 //If the form wasn't submitted, or didn't validate
@@ -59,7 +61,9 @@ if(isset($_POST['submit-updateProperty'])) {
     Number of Rooms: <input type='text' name='number_of_rooms' id='number_of_rooms'  value="<?php echo $number_of_rooms; ?>"/><br/>
     Room Type: <input type='text' name='room_type' id='room_type'  value="<?php echo $room_type; ?>" /><br/>
     Price:  <input type='text' name='price' id='price'  value="<?php echo $price; ?>" /><br/>
-    <input type="submit" value="Update Property" name="submit-updateProperty" />
+    <input type="submit" value="Update Property" name="submit-updateProperty" /><br/><br/>
+    Feature: <input type='text' name='feature' id='feature'  value="" /><br/>
+    <input type="submit" value="Add Additonal Feature" name="addFeature" /><br/>
     </form>
     <form action="propertyInfo.php" method="post">
     <input type="submit" value="Back" name="backProperty" />
