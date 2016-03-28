@@ -17,10 +17,7 @@ $price = "";
 
 
 //initialize php variables used in the form
-$address = $property->address;
-$number_of_rooms = $property->number_of_rooms;
-$room_type = $property->room_type;
-$price = $property->price;
+
  
 //check to see that the form has been submitted
 if(isset($_POST['submit-form'])) { 

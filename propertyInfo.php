@@ -33,6 +33,7 @@ if(isset($_POST['backProperties'])) {
     echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price <br />";
     $owner = mysql_fetch_assoc($property_owner);
     extract($owner);
+    $owner_id = $member_id;
     echo "<br/> Owned By: $FName $LName<br />";
     echo "<br/> Unavailable during the weeks starting on these dates:<br />";
     while($bookings = mysql_fetch_assoc($property_bookings)){
@@ -45,14 +46,24 @@ if(isset($_POST['backProperties'])) {
     while($comments = mysql_fetch_assoc($property_comments)){
         extract($comments);
         echo "<br/> On $Date, $FName $LName said: $text<br />";
-    }    
-    
-    
+    }
+        
+    $member = unserialize($_SESSION['member_id']);
+    if($member->member_id == $owner_id){
+        echo"<form name='options' id='options' action='viewproperties.php' method='post'>
+<input type='submit' name='backProperties' id='backProperties' value='Back' /> 
+</form>"
+    }
+    else{
+        echo 'NO';
+    }
     ?>
-    
+  
+ 
  <form name='options' id='options' action='viewproperties.php' method='post'>
 <input type='submit' name='backProperties' id='backProperties' value='Back' /> 
 </form>
+
  
 </body>
 </html>
