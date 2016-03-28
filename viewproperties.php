@@ -11,9 +11,9 @@ if(isset($_POST['cancel'])) {
     header("Location: profile.php");
 }
 
-if(isset($_POST['$property_id'])) { 
+if(isset($_POST['viewproperty'])) { 
     //"Location: propertyInfo.php?property_id=$_POST['viewproperty']";
-    $_SESSION['property_id'] = $_POST['$property_id'];
+    $_SESSION['property_id'] = $_POST['viewproperty'];
     header("Location: propertyInfo.php");
 }
 if(isset($_POST['addProperty'])) { 
@@ -32,7 +32,7 @@ if(isset($_POST['addProperty'])) {
  	{
  		extract($property);
  		echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price <br />";
- 		echo "<input type='submit' name=$property_id value='View Property' />";
+ 		echo "<input type='submit' value=$property_id name='viewproperty' />";
  	}
  	echo "<input type='submit' value='Add Property' name='addProperty' />";
  	echo "<input type='submit' value='Cancel' name='cancel' /></form>";
