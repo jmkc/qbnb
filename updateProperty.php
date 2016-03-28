@@ -8,13 +8,13 @@ if(!isset($_SESSION['logged_in'])) {
 }
  
 //get the user object from the session
-$property = unserialize($_SESSION['property_id']);
+$property = $_SESSION['property_id'];
  
 //initialize php variables used in the form
-$address = $property->address;
-$number_of_rooms = $property->number_of_rooms;
-$room_type = $property->room_type;
-$price = $property->price;
+$address = "";
+$number_of_rooms = "";
+$room_type = "";
+$price = "";
  
 //check to see that the form has been submitted
 if(isset($_POST['submit-updateProperty'])) { 
@@ -43,12 +43,12 @@ if(isset($_POST['submit-updateProperty'])) {
     <title>Qbnb | Update Property</title>
 </head>
 <body>
-    <?php echo $message; ?>
+    <?php //echo $message; ?>
  
     <form action="updateProperty.php" method="post">
-    address: <input type='text' name='address' id='address'  value="<?php echo $address; ?>"/><br/>
-    number_of_rooms: <input type='text' name='number_of_rooms' id='number_of_rooms'  value="<?php echo $number_of_rooms; ?>"/><br/>
-    room_type: <input type='text' name='room_type' id='room_type'  value"<?php echo $room_type; ?>" /><br/>
+    Address: <input type='text' name='address' id='address'  value="<?php echo $address; ?>"/><br/>
+    Number of Rooms: <input type='text' name='number_of_rooms' id='number_of_rooms'  value="<?php echo $number_of_rooms; ?>"/><br/>
+    Room Type: <input type='text' name='room_type' id='room_type'  value"<?php echo $room_type; ?>" /><br/>
     Price:  <input type='text' name='price' id='price'  value"<?php echo $price; ?>" /><br/>
     <input type="submit" value="Update Property" name="submit-updateProperty" />
     </form>
