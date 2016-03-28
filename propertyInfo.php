@@ -14,7 +14,7 @@ $property_id = $_SESSION['property_id'];
 $property_info = mysql_query("SELECT * FROM Property WHERE property_id = $property_id");
 $property_bookings = mysql_query("SELECT * FROM Booking WHERE property_id = $property_id and status = 'Confirmed'");
 $property_owner = mysql_query("SELECT * FROM Member WHERE member_id = (SELECT owner_id FROM Property WHERE property_id = $property_id)");
-$property_comments = mysql_query("SELECT * FROM Comment WHERE property_id = $property_id");
+$property_comments = mysql_query("SELECT * FROM Comment inner join Member on commenting_member_id = member_id WHERE property_id = $property_id");
 
 if(isset($_POST['backProperties'])) { 
     header("Location: viewproperties.php");
@@ -34,13 +34,18 @@ if(isset($_POST['backProperties'])) {
     $owner = mysql_fetch_assoc($property_owner);
     extract($owner);
     echo "<br/> Owned By: $FName $LName<br />";
-    $bookings = mysql_fetch_assoc($property_bookings);
-    extract($bookings);
-    echo "<br/> Unavailable during these periods: $start_date<br />";
-    $comments = mysql_fetch_assoc($property_comments);
-    extract($comments);
-    echo "<br/> Comments: $text<br />";
-        
+    echo "<br/> Unavailable during the weeks starting on these dates:<br />";
+    while($bookings = mysql_fetch_assoc($property_bookings)){
+        extract($bookings);
+        echo "<br/> $start_date<br />";
+    }
+    
+    
+    echo "<br/> Comments:<br />";
+    while($comments = mysql_fetch_assoc($property_comments)){
+        extract($comments);
+        echo "<br/> On $Date, $FName $LName said: $text<br />";
+    }    
     
     
     ?>
