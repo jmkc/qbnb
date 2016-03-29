@@ -7,25 +7,28 @@
 		header("Location: index.php");
 		die();
 	}
+	
 	if(isset($_POST['backBtn'])) 
 	{ 
 		header("Location: adminProfile.php");
 		die();
 	}
-	$member = unserialize($_SESSION['member_id']);
-	$allProperties = $db->select('property', 1);
 	
-	// Deletes a property
-	function deleteProperty($property_id){
+	if(isset($_POST['deleteProperty']))
+	{
+		$property_id = $_POST['deleteProperty'];
 		$sql = "UPDATE Property SET is_deleted = 1 where property_id = $property_id";
 		$sql_comment = "UPDATE Comment SET is_deleted = 1 where property_id = $property_id";
 		$sql_booking = "UPDATE Booking SET is_deleted = 1 where property_id = $property_id";
-		mysql_query($sql) or die(mysql_error());
-		mysql_query($sql_comment) or die(mysql_error());
-		mysql_query($sql_booking) or die(mysql_error());
+		mysql_query($sql);
+		mysql_query($sql_comment);
+		mysql_query($sql_booking);
 		header("Location: viewAdminProperties.php");
 		die();
 	}
+	
+	$member = unserialize($_SESSION['member_id']);
+	$allProperties = $db->select('property', 1);
 	
 ?>
 
@@ -60,7 +63,7 @@ foreach ($allProperties as $value){
 	<?php
 	foreach ($value as $key=>$shit){
 		if ($key == 'property_id'){
-			$current_property_id = $key;
+			$property_id = $shit;
 		}
 		?>
 		<td>
@@ -72,8 +75,11 @@ foreach ($allProperties as $value){
 	}
 	?>
 	<td>
-		<form name='delete' action='viewAdminProperties.php?deleteProperty=' method='post'>
-			<input type="submit" name="DeleteBtn" value="Delete">
+		<form name='delete' action='viewAdminProperties.php' method='post'>
+		<?php
+			echo "<input type='submit' value=$property_id name='deleteProperty' />";
+		?>
+		
 		</form>
 		</td>
 		</tr>
