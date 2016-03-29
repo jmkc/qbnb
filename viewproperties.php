@@ -6,7 +6,7 @@ require_once 'global.inc.php';
 if(!isset($_SESSION['logged_in'])) {
     header("Location: index.php");
 }
-$allProperties = mysql_query("SELECT * FROM Property");
+$allProperties = mysql_query("SELECT * FROM Property where is_deleted = 0");
 if(isset($_POST['cancel'])) { 
     header("Location: profile.php");
 }
