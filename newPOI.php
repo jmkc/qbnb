@@ -47,7 +47,7 @@ $allPOI = mysql_query("SELECT * FROM Points_of_Interest natural join District");
   <option value="5">Midtown</option>
 </select>
 <br/>
-    <input type="submit" value="Add Point of Interes" name="addPOI" />
+    <input type="submit" value="Add Point of Interest" name="addPOI" />
     <input type='submit' value='Back' name='back' /></form>
     </form>
 </body>
