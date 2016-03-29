@@ -21,6 +21,17 @@ if(isset($_POST['deleteBooking'])) {
    header("Location: viewyourbookings.php");
 }
 
+if(isset($_POST['Search'])) { 
+    $query = "SELECT * FROM Booking inner join Property on Booking.property_id = Property.property_id inner join Member on owner_id = Member.member_id WHERE 
+    booking_member_id = $member->member_id and Booking.is_deleted = 0";
+    if(!empty($_POST['status']) and $_POST['status'] != "All"){
+        $status = $_POST['status'];
+        //$message = $message."Viewing acommodations with $num_rooms rooms<br/>";
+        $query .= " and status = '". $status . "'";
+    } 
+    $yourBookings = mysql_query($query);
+}
+
 ?>
 <html>
 <head>
@@ -52,8 +63,21 @@ if(isset($_POST['deleteBooking'])) {
     else{
         echo "You have no current confirmed bookings<br/>";
     }
- 	//echo "<input type='submit' value='Add Property' name='addProperty' />";
- 	echo "<input type='submit' value='Cancel' name='cancel' /></form>";
+    ?>
+    <h1> Search For Bookings</h1>
+    <form action="viewyourbookings.php" method="post">
+    Status: <select name="status">
+   <option value="All">All</option>     
+  <option value="Confirmed">Confirmed</option>
+  <option value="Unconfirmed">Unconfirmed</option>
+  <option value="Denied">Denied</option>
+    </select>
+    <br/>
+    
+    <?php
+    echo "<input type='submit' value='Search' name='Search' /><br/><br/></form>";
+ 	echo "<form action='viewyourbookings.php' method='post'>
+     <input type='submit' value='Cancel' name='cancel' /></form>";
  	?>
 </body>
 </html>
