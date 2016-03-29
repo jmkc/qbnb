@@ -30,6 +30,7 @@ if(isset($_POST['deleteBooking'])) {
     <h1>View Your Bookings</h1>
  	<?php
  	echo "<form action='viewyourbookings.php' method='post'>";
+    if(mysql_num_rows($yourBookings) != 0){
  	while($booking = mysql_fetch_assoc($yourBookings))
  	{
  		extract($booking);
@@ -47,6 +48,10 @@ if(isset($_POST['deleteBooking'])) {
         echo "Delete Booking: <input type='submit' value=$booking_id name='deleteBooking' /><br/>";
         }
  	}
+    }
+    else{
+        echo "You have no current confirmed bookings<br/>";
+    }
  	//echo "<input type='submit' value='Add Property' name='addProperty' />";
  	echo "<input type='submit' value='Cancel' name='cancel' /></form>";
  	?>

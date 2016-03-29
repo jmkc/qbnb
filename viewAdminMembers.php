@@ -28,7 +28,7 @@ Welcome, Administrator <?php echo $member->FName; ?> <br/>
  	while($membercurr = mysql_fetch_assoc($allMembers))
  	{
  		extract($membercurr);
- 		echo "<br />Name: $FName $LName Faculty: $faculty<br />";
+ 		echo "<br />Name: $FName $LName<br />E-Mail: $email<br /> Faculty: $faculty<br />";
  		echo "View Member:<input type='submit' value=$member_id name='viewmember' /><br/>";
  	}
      

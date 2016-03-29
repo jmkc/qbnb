@@ -54,7 +54,7 @@ if(isset($_POST['delete'])) {
     
     $property = mysql_fetch_assoc($property_info);
     extract($property);
-    echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: \$$price <br />";
+ 	echo "<br />Address: $address <br />Number of Rooms: $number_of_rooms <br /> Room Type: $room_type <br /> Price: \$$price <br />";
     
     $owner = mysql_fetch_assoc($property_owner);
     extract($owner);
@@ -73,7 +73,7 @@ if(isset($_POST['delete'])) {
         }
     }
     else{
-        echo "<h2> No available features</h2>";
+        echo "<h2> No near points of interest</h2>";
     }
     
     if(mysql_num_rows($feature_info) != 0){

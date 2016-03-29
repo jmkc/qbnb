@@ -47,6 +47,7 @@ if(isset($_POST['submit-updateDeny'])) {
     <title>Qbnb | Update Property</title>
 </head>
 <body>
+    <h1>View Your Pending Bookings</h1>
     <?php echo $message ?>
     <?php
     echo "<form action='viewPendingBookings.php' method='post'>";
@@ -65,7 +66,7 @@ if(isset($_POST['submit-updateDeny'])) {
         <input type='submit' value='Deny' name='submit-updateDeny' />
     </form>";
     } else{
-        echo "No pending bookings";
+        echo "You have no pending bookings on your properties";
     }
     ?>
     <form action='profile.php' method='post'>

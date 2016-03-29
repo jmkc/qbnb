@@ -58,7 +58,7 @@
  		extract($property);
         echo "<form action='viewAdminProperties.php' method='post'>";
  		echo "<br />Address: $address <br />Number of Rooms: $number_of_rooms Room Type: $room_type 
-         <br /> Price: $price  <br /> District: $district_name <br />Owner: $FName $LName<br /> ";
+         <br /> Price: \$$price  <br /> District: $district_name <br />Owner: $FName $LName<br /> ";
  		echo "View Property:<input type='submit' value=$property_id name='viewproperty' /></form><br/>";         
  	    }
          echo "<h2>Deleted Properties</h2>";
@@ -67,7 +67,7 @@
  		extract($property);
         echo "<form action='viewAdminProperties.php' method='post'>";
  		echo "<br />Address: $address <br />Number of Rooms: $number_of_rooms Room Type: $room_type 
-         <br /> Price: $price  <br /> District: $district_name <br />Owner: $FName $LName<br /> ";
+         <br /> Price: \$$price  <br /> District: $district_name <br />Owner: $FName $LName<br /> ";
  		echo "View Property:<input type='submit' value=$property_id name='viewproperty' /></form><br/>";
         // echo "<form action='viewAdminProperties.php' method='post'>
         // Delete Property: <input type='submit' value=$property_id name='deleteProperty' /></form><br />";

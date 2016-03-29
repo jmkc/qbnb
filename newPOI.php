@@ -33,7 +33,7 @@ $allPOI = mysql_query("SELECT * FROM Points_of_Interest natural join District");
      while($onePOI= mysql_fetch_assoc($allPOI))
  	{
  		extract($onePOI);
- 		echo "<br />District: $district_name POI: $points_of_interest<br />";
+ 		echo "<br />District: $district_name<br /> POI: $points_of_interest<br />";
  	}
  	?>
     <h2>Add Points of Interest</h2>

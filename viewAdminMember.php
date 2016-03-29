@@ -5,7 +5,7 @@ $member = unserialize($_SESSION['member_id']);
 $member_view_id = $_SESSION['member_view_id'];
 // $mesmber_view_id = $member_view->member_id;
 $member_info = mysql_query("Select * from Member WHERE member_id = $member_view_id");
-$supplierBookings = mysql_query("SELECT booking.status, booking.start_date, property.address 
+$supplierBookings = mysql_query("SELECT booking.status, booking.start_date, property.address, FName, LName 
 FROM Booking INNER JOIN Member on Booking.booking_member_id = Member.member_id 
 INNER JOIN Property on Booking.property_id = property.property_id WHERE property.owner_id = $member_view_id");
 $supplierRatings = mysql_query("SELECT Comment.rating, member.FName, member.LName, property.address
@@ -73,7 +73,7 @@ while($member_information = mysql_fetch_assoc($member_info))
           while($supplierBooking = mysql_fetch_assoc($supplierBookings))
  	    {
  		extract($supplierBooking);
- 		echo "<br />Status: $status Start Date: $start_date Address: $address<br />";
+ 		echo "<br />  Address: $address <br /> Booked By: $FName $LName <br />Start Date: $start_date<br /> Status: $status<br />";
      }
      }
     if (mysql_num_rows($supplierRatings)!=0){
@@ -81,7 +81,9 @@ while($member_information = mysql_fetch_assoc($member_info))
     while($supplierRating = mysql_fetch_assoc($supplierRatings))
  	{
  		extract($supplierRating);
- 		echo "<br />Rating: $rating Name: $FName $LName Address: $address<br />";
+ 		if($rating){
+            echo "<br />Name: $FName $LName<br /> Address: $address<br /> Rating: $rating <br />";
+        }	
  	}
     }
     if ((mysql_num_rows($consumerBookings)!=0) || (mysql_num_rows($consumerRatings)!=0)){
@@ -99,7 +101,10 @@ while($member_information = mysql_fetch_assoc($member_info))
     while($consumerRating = mysql_fetch_assoc($consumerRatings))
  	{
  		extract($consumerRating);
- 		echo "<br />Rating: $rating Name: $FName $LName Address: $address<br />";
+        if($rating){
+            echo "<br />Name: $FName $LName<br /> Address: $address<br /> Rating: $rating <br />";
+
+        }	
  	} 
     }
  	echo "<input type='submit' value='Cancel' name='cancel' /></form>";
