@@ -31,14 +31,13 @@ if(isset($_POST['comment'])) {
 }
 if(isset($_POST['delete'])) { 
     $property_id = $_SESSION['property_id'];
-    echo $property_id;
     $sql = "UPDATE Property SET is_deleted = 1 where property_id = $property_id";
     $sql_comment = "UPDATE Comment SET is_deleted = 1 where property_id = $property_id";
     $sql_booking = "UPDATE Booking SET is_deleted = 1 where property_id = $property_id";
     mysql_query($sql) or die(mysql_error());
     mysql_query($sql_comment) or die(mysql_error());
     mysql_query($sql_booking) or die(mysql_error());
-    //header("Location: viewproperties.php");
+    header("Location: viewproperties.php");
 }
 
 ?>
