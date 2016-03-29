@@ -27,14 +27,16 @@ $allPOI = mysql_query("SELECT * FROM Points_of_Interest natural join District");
     <title>Qbnb | Add POI</title>
 </head>
 <body>
+    <h1>Toggle Points of Interest</h1>
 <?php
- 	while($onePOI= mysql_fetch_assoc($allPOI))
+ 	echo "<h2>Current Points of Interest</h2>";
+     while($onePOI= mysql_fetch_assoc($allPOI))
  	{
  		extract($onePOI);
  		echo "<br />District: $district_name POI: $points_of_interest<br />";
  	}
  	?>
- 
+    <h2>Add Points of Interest</h2>
     <form action="newPOI.php" method="post">
     Point of Interest: <input type='text' name='poi' id='poi'  value=""/><br/>
     District: <select name="district_id">
