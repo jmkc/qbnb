@@ -34,7 +34,7 @@ if(isset($_POST['deleteBooking'])) {
  	{
  		extract($booking);
         if ($is_deleted == 0){
- 		echo "<br />Address: $address $is_deleted <br /> Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price - Owner: $FName $LName - Move In Date: $start_date <br />";
+ 		echo "<br />Status: $status<br />Address: $address <br /> Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price - Owner: $FName $LName - Move In Date: $start_date <br />";
  		$sql = "select * from Points_Of_Interest where district_id = $district_id";
         echo "Points of Interest:";
         $POIs = mysql_query($sql);
@@ -42,6 +42,7 @@ if(isset($_POST['deleteBooking'])) {
             extract($POI);
             echo "$points_of_interest<br \>";
         }
+        
         
         echo "Delete Booking: <input type='submit' value=$booking_id name='deleteBooking' /><br/>";
         }
