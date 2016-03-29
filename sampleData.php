@@ -153,12 +153,12 @@ mysqli_query($cxn, "CREATE TABLE IF NOT EXISTS `qbnb`.`Feature` (
 
 
 mysqli_query($cxn,"INSERT INTO `qbnb`.`Member` 
-  (`member_id`, `email`, `password`, `FName`, `LName`, `year`, `faculty`, `degree`, `is_admin`, `is_deleted`) VALUES 
-  ('jshimz@hotmail.com', 'itsjustshim', 'Justin', 'Shimkovitz', 2016, 'Law', 'Criminal Law', 1, DEFAULT),
+  (`email`, `password`, `FName`, `LName`, `year`, `faculty`, `degree`, `is_admin`, `is_deleted`) VALUES 
+  ('jshimz@hotmail.com', 'itsjustshim', 'Justin', 'Shimkovitz', 2016, 'Law', 'Criminal Law', 1, 0),
   ('coolboyjulez@queensu.ca', 'jwill', 'Julian', 'Wilson', 2016, 'Commerce', 'Finance', 1, 0),
   ('jcisgod@gmail.com', 'jacjacjac', 'Jacqueline', 'Craig', 2016, 'Engineering', 'Applied Math', 1, 0),
   ('fakeemail@hotmail.com', 'animals', 'John', 'Stewart', 2018, 'Science', 'Biology', 0, 0),
-  ('potus@gmail.com', 'password', 'Barack', 'Obama', 2019, 'Arts', 'English', 0, 0)
+  ('potus@gmail.com', 'password', 'Barack', 'Obama', 2019, 'Arts', 'English', 0, 0),
   ('potus2@gmail.com', 'password2', 'Barack2', 'Obama2', 2017, 'Arts', 'English', 0, 0),
   ('potus3@gmail.com', 'password3', 'Barack3', 'Obama3', 2016, 'Arts', 'English', 0, 0),
   ('potus4@gmail.com', 'password4', 'Barack4', 'Obama4', 2015, 'Arts', 'English', 0, 0)
@@ -231,7 +231,7 @@ mysqli_query($cxn,"INSERT INTO `qbnb`.`Phone_Number`
   ('453-235-4433', 4),
   ('323-655-6666', 5),
   ('323-655-1236', 7),
-  ('323-655-6666', 7),
+  ('323-655-6656', 7),
   ('323-655-6667', 8),
   ('313-655-6667', 3),
   ('323-633-6667', 6),
@@ -269,7 +269,7 @@ mysqli_query($cxn,"INSERT INTO `qbnb`.`Feature` (`feature`, `property_id`) VALUE
 mysqli_query($cxn,"INSERT INTO `qbnb`.`Comment` (`text`, `Rating`, `Date`, `is_deleted`, `commenting_member_id`, `property_id`) VALUES 
   ('Great place! Slightly dirty, but nothing unmanageable', 4, '2015-05-05', 0, 5, 1),
   ('Thanks for your feedback! Ill make sure to get that fixed', NULL, '2015-05-06', 0, 1, 1),
-  ('Terrible. Really terrifying area of town and nothing near it worth seeing. Would not recommend.', 1, '2016-01-03', 0, 4, 3)
+  ('Terrible. Really terrifying area of town and nothing near it worth seeing. Would not recommend.', 1, '2016-01-03', 0, 4, 3),
   ('Awesome Job, I would definietly stay here again!',4,'2016-06-07',0 , 1, 1),
   ('This was alright, not going to be here again',2,'2013-10-23', 0, 2, 2),
   ('Really liked the light in this place!',4,'2013-10-26', 0, 2, 3),
@@ -288,7 +288,7 @@ mysqli_query($cxn,"INSERT INTO `qbnb`.`Comment` (`text`, `Rating`, `Date`, `is_d
   ('Shouldnt have gone here',3,'2015-08-09', 0, 1, 3),
   ('So many points of interest around here!',4,'2015-08-31', 0, 6, 5),
   ('Awesome Job, I would definietly stay here again!',4,'2015-10-03',0 , 6, 11),
-  ('Really liked the light in this place!',4,'2015-10-26', 0, 9, 2),
+  ('Really liked the light in this place!',4,'2015-10-26', 0, 5, 2),
   ('So many points of interest around here!',4,'2015-12-20', 0, 4, 4),
   ('This was alright, not going to be here again',2,'2016-03-20', 0, 6, 8),
   ('Awesome Job, I would definietly stay here again!',4,'2016-05-18', 0, 7, 10),
