@@ -16,7 +16,6 @@ if(isset($_POST['cancel'])) {
 }
 if(isset($_POST['deleteBooking'])) {
     $booking_id = $_POST['deleteBooking'];
-    //echo "$booking_id";
     $sql2 = "Update Booking SET is_deleted = 1 where booking_id = $booking_id";
     mysql_query($sql2);// or die(mysql_error()); 
    header("Location: viewyourbookings.php");

@@ -64,34 +64,44 @@ while($member_information = mysql_fetch_assoc($member_info))
     <input type='submit' value='Delete Member' name='delete' /> 
 </form>
 <h1>Supply Activity:</h1>
-<h2>Supply Booking:</h2>
+
 <?php
- 	echo "<form action='viewAdminMember.php' method='post'>";
- 	while($supplierBooking = mysql_fetch_assoc($supplierBookings))
- 	{
+    if ((mysql_num_rows($supplierBookings)!=0) || (mysql_num_rows($supplierRatings)!=0)){
+ 	echo "<form action='viewAdminMember.php' method='post'>";}
+ 	if (mysql_num_rows($supplierBookings)!=0){
+         echo "<h2>Supply Booking:</h2>";
+          while($supplierBooking = mysql_fetch_assoc($supplierBookings))
+ 	    {
  		extract($supplierBooking);
  		echo "<br />Status: $status Start Date: $start_date Address: $address<br />";
      }
+     }
+    if (mysql_num_rows($supplierRatings)!=0){
     echo "<h2>Supply Rating:</h2>";
     while($supplierRating = mysql_fetch_assoc($supplierRatings))
  	{
  		extract($supplierRating);
  		echo "<br />Rating: $rating Name: $FName $LName Address: $address<br />";
  	}
-    echo "<h1>Consumer Activity:</h2>";
+    }
+    if ((mysql_num_rows($consumerBookings)!=0) || (mysql_num_rows($consumerRatings)!=0)){
+    echo "<h1>Consumer Activity:</h2>";}
+    if (mysql_num_rows($consumerBookings)!=0){
     echo "<h2>Consumer Bookings:</h2>";
     while($consumerBooking = mysql_fetch_assoc($consumerBookings))
  	{
  		extract($consumerBooking);
  		echo "<br />Status: $status Start Date: $start_date Address: $address<br />";
      }
+    }
+    if (mysql_num_rows($consumerRatings)!=0){
     echo "<h2>Consumer Rating:</h2>";
     while($consumerRating = mysql_fetch_assoc($consumerRatings))
  	{
  		extract($consumerRating);
  		echo "<br />Rating: $rating Name: $FName $LName Address: $address<br />";
  	} 
-    
+    }
  	echo "<input type='submit' value='Cancel' name='cancel' /></form>";
  	?>
 </body>

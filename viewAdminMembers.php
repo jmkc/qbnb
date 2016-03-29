@@ -19,6 +19,7 @@ if(isset($_POST['cancel'])) {
         <title>Qbnb | Administrator</title>
     </head>
 <body>
+    <h1>View all members</h1>
 Welcome, Administrator <?php echo $member->FName; ?> <br/>
 <?php
  	echo "<form action='viewAdminMembers.php' method='post'>";
@@ -26,9 +27,9 @@ Welcome, Administrator <?php echo $member->FName; ?> <br/>
  	{
  		extract($membercurr);
  		echo "<br />Name: $FName $LName Faculty: $faculty<br />";
- 		echo "<input type='submit' value=$member_id name='viewmember' />";
+ 		echo "View Member:<input type='submit' value=$member_id name='viewmember' /><br/>";
  	}
- 	echo "<input type='submit' value='Cancel' name='cancel' /></form>";
+ 	echo "<br/><input type='submit' value='Cancel' name='cancel' /></form>";
  	?>
 </body>
 
