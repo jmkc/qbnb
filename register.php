@@ -61,6 +61,11 @@ if(isset($_POST['submit-form'])) {
 
         //log them in
         $userTools->login($email, $password);
+        $phoneData['phone_number'] = $phone_number;
+        $member = unserialize($_SESSION['member_id']);
+        $phone_id = $member->member_id;
+        $phoneData['member_id'] = $phone_id;
+        $db->insert($phoneData, 'Phone_Number');
 
         //redirect them to a welcome page
         header("Location: profile.php");
