@@ -68,7 +68,7 @@ if(isset($_POST['submit-form'])) {
         $db->insert($phoneData, 'Phone_Number');
 
         //redirect them to a welcome page
-        header("Location: profile.php");
+         header("Location: profile.php");
 
     }
 
@@ -94,7 +94,7 @@ if(isset($_POST['cancel-reg'])) {
     Degree: <input type='text' name='degree' id='degree'/><br/>
     Faculty: <input type='text' name='faculty' id='faculty'/><br/>
     Graduating Year: <input type='text' name='year' id='year'/><br/>
-    Phone Number: <input type='text' name='phone' id='phone'/><br/>
+    Phone Number: <input type='text' name='phone_number' id='phone_number'/><br/>
     Password: <input type='password' name='password' id='password' /><br/>
     Password (confirm): <input type="password" name="password-confirm" id='password-confirm'/><br/>
     <input type="submit" value="Register" name="submit-form" />
