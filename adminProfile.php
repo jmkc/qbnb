@@ -45,9 +45,9 @@ Welcome, Administrator <?php echo $member->FName; ?> <br/>
     <input type='submit' name='viewAdminPropertiesBtn' id='viewAdminPropertiesBtn' value='Properties' /></form>
     <form name='options' id='options' action='viewAdminMembers.php' method='post'>
     <input type='submit' name='viewAdminMembersBtn' id='viewAdminMembersBtn' value='Members' /></form>
-    <form name='options' id='options' action='profile.php' method='post'>
+    <form name='options' id='options' action='newPOI.php' method='post'>
     <input type='submit' name='viewPOIBtn' id='viewPOIBtn' value='Points of Interest' /></form>
-    <form name='options' id='options' action='profile.php' method='post'>
+    <form name='options' id='options' action='index.php' method='post'>
     <input type='submit' name='logoutBtn' id='logoutBtn' value='Log Out' /></form>
     <form name='options' id='options' action='profile.php' method='post'>
     <input type='submit' name='backBtn' id='backBtn' value='Back' /></form>
