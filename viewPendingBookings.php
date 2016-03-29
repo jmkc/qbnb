@@ -12,9 +12,9 @@ $member = unserialize($_SESSION['member_id']);
 $message = "";
 
 $allProperties = mysql_query("SELECT * 
-    FROM Property natural join Booking 
+    FROM Property natural join Booking inner join Member on booking_member_id = member_id 
     WHERE status = 'Unconfirmed'
-    and owner_id = $member->member_id");
+    and owner_id = $member->member_id and booking.is_deleted = 0");
 
 
 //check to see that the form has been submitted
@@ -53,7 +53,7 @@ if(isset($_POST['submit-updateDeny'])) {
     while($booking = mysql_fetch_assoc($allProperties))
     {
         extract($booking);
-        echo "<br />Booking ID: $booking_id - Address: $address - Date: $start_date - Status: $status<br />";
+        echo "<br />Booking ID: $booking_id - Address: $address - Date: $start_date - Status: $status - Booked By: $FName $LName<br />";
     }
     echo "</form>";
     ?>

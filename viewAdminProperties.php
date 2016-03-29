@@ -41,6 +41,8 @@
 	$member = unserialize($_SESSION['member_id']);
 	$allProperties =mysql_query("SELECT * from Property natural join district inner join Member  
     where property.owner_id = member.member_id and property.is_deleted = 0");
+    $allPropertiesdelete =mysql_query("SELECT * from Property natural join district inner join Member  
+    where property.owner_id = member.member_id and property.is_deleted = 1");
 ?>
 
 <html>
@@ -50,18 +52,26 @@
 	<body>
         <h1>View All Properties</h1>
         <?php 
-        
+        echo "<h2>Active Properties</h2>";
         while($property = mysql_fetch_assoc($allProperties))
  	    {
  		extract($property);
-         if ($is_deleted == 0){
         echo "<form action='viewAdminProperties.php' method='post'>";
  		echo "<br />Address: $address <br />Number of Rooms: $number_of_rooms Room Type: $room_type 
-         <br /> Price: $price  <br /> District: $district_name  <br /> Deleted: $is_deleted  <br />Owner: $FName $LName<br /> ";
+         <br /> Price: $price  <br /> District: $district_name <br />Owner: $FName $LName<br /> ";
+ 		echo "View Property:<input type='submit' value=$property_id name='viewproperty' /></form><br/>";         
+ 	    }
+         echo "<h2>Deleted Properties</h2>";
+          while($property = mysql_fetch_assoc($allPropertiesdelete))
+ 	    {
+ 		extract($property);
+        echo "<form action='viewAdminProperties.php' method='post'>";
+ 		echo "<br />Address: $address <br />Number of Rooms: $number_of_rooms Room Type: $room_type 
+         <br /> Price: $price  <br /> District: $district_name <br />Owner: $FName $LName<br /> ";
  		echo "View Property:<input type='submit' value=$property_id name='viewproperty' /></form><br/>";
         // echo "<form action='viewAdminProperties.php' method='post'>
         // Delete Property: <input type='submit' value=$property_id name='deleteProperty' /></form><br />";
-         }
+         
  	    }
  	    echo "<br/>";
  	    ?>

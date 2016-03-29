@@ -32,7 +32,7 @@ if(isset($_POST['addProperty'])) {
  	while($property = mysql_fetch_assoc($allProperties))
  	{
  		extract($property);
- 		echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price <br />";
+ 		echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: \$$price <br />";
  		echo "View Property: <input type='submit' value=$property_id name='viewproperty' /><br/>";
  	}
  	echo "<br/><input type='submit' value='Add Property' name='addProperty' />";

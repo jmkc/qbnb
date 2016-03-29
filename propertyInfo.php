@@ -16,6 +16,8 @@ $feature_info = mysql_query("SELECT * FROM Feature WHERE property_id = $property
 $property_bookings = mysql_query("SELECT * FROM Booking WHERE property_id = $property_id and status = 'Confirmed'");
 $property_owner = mysql_query("SELECT * FROM Member WHERE member_id = (SELECT owner_id FROM Property WHERE property_id = $property_id)");
 $property_comments = mysql_query("SELECT * FROM Comment inner join Member on commenting_member_id = member_id WHERE property_id = $property_id");
+$property_district = mysql_query("SELECT * FROM District natural join Property WHERE property_id = $property_id");
+$property_POI = mysql_query("SELECT * FROM Points_of_Interest natural join Property WHERE property_id = $property_id");
 
 if(isset($_POST['backProperties'])) { 
     header("Location: viewproperties.php");
@@ -52,12 +54,28 @@ if(isset($_POST['delete'])) {
     
     $property = mysql_fetch_assoc($property_info);
     extract($property);
-    echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price <br />";
+    echo "<br />Address: $address - Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: \$$price <br />";
     
     $owner = mysql_fetch_assoc($property_owner);
     extract($owner);
     $owner_id = $member_id;
     echo "<br/> Owned By: $FName $LName<br />";
+    
+    $district = mysql_fetch_assoc($property_district);
+    extract($district);
+   echo "<br/> In District: $district_name, near $Street_1 and $Street_2<br />";
+    
+    if(mysql_num_rows($property_POI) != 0){
+        echo "<h2> Points of Interest</h2>";
+        while($poi = mysql_fetch_assoc($property_POI)){
+            extract($poi);
+            echo "<br/> $points_of_interest <br />";
+        }
+    }
+    else{
+        echo "<h2> No available features</h2>";
+    }
+    
     if(mysql_num_rows($feature_info) != 0){
         echo "<h2> Features</h2>";
         while($features = mysql_fetch_assoc($feature_info)){
