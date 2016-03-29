@@ -54,7 +54,7 @@ if(isset($_POST['submit-updateDeny'])) {
     while($booking = mysql_fetch_assoc($allProperties))
     {
         extract($booking);
-        echo "<br />Booking ID: $booking_id - Address: $address - Date: $start_date - Status: $status - Booked By: $FName $LName<br />";
+        echo "<br />Booking ID: $booking_id <br /> Address: $address <br /> Date: $start_date <br /> Status: $status <br /> Booked By: $FName $LName<br />";
     }
     echo "</form>";
     ?>

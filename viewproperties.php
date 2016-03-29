@@ -26,6 +26,13 @@ if(isset($_POST['addProperty'])) {
 
 if(isset($_POST['Search'])) { 
     $query = "SELECT * FROM Property where is_deleted = 0";
+    if(!empty($_POST['owned']) and $_POST['owned'] != "No"){
+        //$num_rooms = $_POST['num_rooms'];
+        $member = unserialize($_SESSION['member_id']);
+        $owner_id = $member->member_id;
+        //$message = $message."Viewing acommodations with $num_rooms rooms<br/>";
+        $query .= " and owner_id = '". $owner_id . "'";
+    } 
     if(!empty($_POST['num_rooms']) and $_POST['num_rooms'] != "All"){
         $num_rooms = $_POST['num_rooms'];
         //$message = $message."Viewing acommodations with $num_rooms rooms<br/>";
@@ -61,7 +68,7 @@ if(isset($_POST['Search'])) {
         //$message = $message."Viewing acommodations in the district with ID: $district_id<br/>";
         $query .= " and district_id = '". $district_id . "'";
     }
-    $message = $message.$query;
+   //$message = $message.$query;
     $allProperties = mysql_query("$query");
     // echo $num_rooms;
     
@@ -76,26 +83,14 @@ if(isset($_POST['Search'])) {
     <title>Qbnb | View All Properties</title>
 </head>
 <body>
-    <h1> View all Properties</h1>
-    <?php echo $message ?>
- 	<?php
- 	echo "<form action='viewproperties.php' method='post'>";
- 	while($property = mysql_fetch_assoc($allProperties))
- 	{
- 		extract($property);
- 		echo "<br />Address: $address <br />Number of Rooms: $number_of_rooms <br /> Room Type: $room_type <br /> Price: \$$price <br />";
-        $property_district = mysql_query("SELECT * FROM District natural join Property WHERE property_id = $property_id");
-        
-        $district = mysql_fetch_assoc($property_district);
-        extract($district);
-        echo "District: $district_name<br />";
-        echo "View Property: <input type='submit' value=$property_id name='viewproperty' /><br/>";
-        
- 	}
- 	echo "<br/><input type='submit' value='Add Property' name='addProperty' /><br/></form>";
-     ?>
-    <h1> Search Properties</h1>
+    <h1> View Properties</h1>
+    <h2> Search Properties</h2>
     <form action="viewproperties.php" method="post">
+    Only My Properties? <select name="owned">
+   <option value="No">No</option>     
+  <option value="Yes">Yes</option>
+    </select>
+    <br/>
     Number of Rooms: <select name="num_rooms">
    <option value="All">All</option>     
   <option value="1">1</option>
@@ -140,7 +135,26 @@ if(isset($_POST['Search'])) {
     <?php
  	echo "<br/><input type='submit' value='Search' name='Search' /></form>";
     echo "<form action='viewproperties.php' method='post'>";
- 	echo "<br/><input type='submit' value='Cancel' name='cancel' /></form>";
+ 	echo "<input type='submit' value='Back' name='cancel' /></form>";
  	?>
+    <?php echo $message ?>
+    <h2>Properties</h2>
+ 	<?php
+ 	echo "<form action='viewproperties.php' method='post'>";
+ 	while($property = mysql_fetch_assoc($allProperties))
+ 	{
+ 		extract($property);
+ 		echo "<br />Address: $address <br />Number of Rooms: $number_of_rooms <br /> Room Type: $room_type <br /> Price: \$$price <br />";
+        $property_district = mysql_query("SELECT * FROM District natural join Property WHERE property_id = $property_id");
+        
+        $district = mysql_fetch_assoc($property_district);
+        extract($district);
+        echo "District: $district_name<br />";
+        echo "View Property: <input type='submit' value=$property_id name='viewproperty' /><br/>";
+        
+ 	}
+ 	echo "<br/><input type='submit' value='Add Property' name='addProperty' /><br/></form>";
+     ?>
+    
 </body>
 </html>
