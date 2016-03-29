@@ -17,6 +17,8 @@ if(isset($_POST['back'])) {
     header("Location: adminProfile.php");
 }
 
+$allPOI = mysql_query("SELECT * FROM Points_of_Interest natural join District");
+
 ?>
 
 
@@ -25,6 +27,13 @@ if(isset($_POST['back'])) {
     <title>Qbnb | Add POI</title>
 </head>
 <body>
+<?php
+ 	while($onePOI= mysql_fetch_assoc($allPOI))
+ 	{
+ 		extract($onePOI);
+ 		echo "<br />District: $district_name POI: $points_of_interest<br />";
+ 	}
+ 	?>
  
     <form action="newPOI.php" method="post">
     Point of Interest: <input type='text' name='poi' id='poi'  value=""/><br/>
