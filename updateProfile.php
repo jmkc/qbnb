@@ -51,7 +51,15 @@ if(isset($_POST['submit-updateProfile'])) {
 if(isset($_POST['cancel'])) { 
     header("Location: profile.php");
 }
+if(isset($_POST['addphone_number'])) { 
  
+    //retrieve the $_POST variables
+    $phone_number = $_POST['phone_number'];
+    $member_id = $_SESSION['member_id'];
+    $phoneData['feature'] = $feature;
+    $phoneData['member_id']= $member_id;
+    $db->insert($phoneData, 'Phone_Number');
+}
 //If the form wasn't submitted, or didn't validate
 //then we show the registration form again
 ?>
@@ -61,6 +69,8 @@ if(isset($_POST['cancel'])) {
     <title>Qbnb | Update Profile</title>
 </head>
 <body>
+    <h1>Update Profile</h1>
+    <h2>Update Profile Information</h2>
     <?php echo $message ?> 
     <form action="updateProfile.php" method="post">
     First Name: <input type='text' name='FName' id='FName'  value="<?php echo $FName; ?>" /><br/>
@@ -70,7 +80,10 @@ if(isset($_POST['cancel'])) {
     Degree: <input type='text' name='degree' id='degree'  value="<?php echo $degree; ?>" /><br/>
     Password: <input type="password" name="password" /><br/>
     Password (confirm): <input type="password"  name="password-confirm" /><br/>
-    
+    <h2>Add Phone Number</h2>
+    Feature: <input type='text' name='phone_number' id='phone_number'  value="" /><br/>
+    <input type="submit" value="Add Additonal Phone Number" name="addphone_number" /><br/>
+    </form>
     <input type="submit" value="Update Profile" name="submit-updateProfile" />
     <input type="submit" value="Cancel" name="cancel" />
     </form>
