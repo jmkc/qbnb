@@ -59,6 +59,7 @@ if(isset($_POST['addphone_number'])) {
     $phoneData['feature'] = $feature;
     $phoneData['member_id']= $member_id;
     $db->insert($phoneData, 'Phone_Number');
+    header("Location: profile.php");
 }
 //If the form wasn't submitted, or didn't validate
 //then we show the registration form again
@@ -72,7 +73,7 @@ if(isset($_POST['addphone_number'])) {
     <h1>Update Profile</h1>
     <h2>Update Profile Information</h2>
     <?php echo $message ?> 
-    <form action="updateProfile.php" method="post">
+    <form action="profile.php" method="post">
     First Name: <input type='text' name='FName' id='FName'  value="<?php echo $FName; ?>" /><br/>
     Last Name: <input type='text' name='LName' id='LName'  value="<?php echo $LName; ?>"/><br/>
     Year: <input type='text' name='year' id='year'  value="<?php echo $year; ?>"/><br/>
@@ -81,10 +82,11 @@ if(isset($_POST['addphone_number'])) {
     Password: <input type="password" name="password" /><br/>
     Password (confirm): <input type="password"  name="password-confirm" /><br/>
     <h2>Add Phone Number</h2>
-    Feature: <input type='text' name='phone_number' id='phone_number'  value="" /><br/>
+    Phone Number: <input type='text' name='phone_number' id='phone_number'  value="" /><br/>
     <input type="submit" value="Add Additonal Phone Number" name="addphone_number" /><br/>
     </form>
     <input type="submit" value="Update Profile" name="submit-updateProfile" />
+    <form action="profile.php" method="post">
     <input type="submit" value="Cancel" name="cancel" />
     </form>
 </body>
