@@ -51,14 +51,13 @@ if(isset($_POST['submit-updateProfile'])) {
 if(isset($_POST['cancel'])) { 
     header("Location: profile.php");
 }
-if(isset($_POST['submit-phone_number'])) { 
+if(isset($_POST['addphone_number'])) { 
  
     //retrieve the $_POST variables
     $phone_number = $_POST['phone_number'];
-    $phoneData['phone_number'] = $phone_number;
-    $member = unserialize($_SESSION['member_id']);
-    $phone_id = $member->member_id;
-    $phoneData['member_id'] = $phone_id;
+    $member_id = $_SESSION['member_id'];
+    $phoneData['feature'] = $feature;
+    $phoneData['member_id']= $member_id;
     $db->insert($phoneData, 'Phone_Number');
     header("Location: profile.php");
 }
@@ -82,14 +81,11 @@ if(isset($_POST['submit-phone_number'])) {
     Degree: <input type='text' name='degree' id='degree'  value="<?php echo $degree; ?>" /><br/>
     Password: <input type="password" name="password" /><br/>
     Password (confirm): <input type="password"  name="password-confirm" /><br/>
-    <input type="submit" value="Update Profile" name="submit-updateProfile" />
-    </form>
     <h2>Add Phone Number</h2>
-    Phone Number: 
-    <form method="post">
-    <input type='text' name='phone_number' id='phone_number'  value="" /><br/>
-    <input type="submit" value="Add Additonal Phone Number" name="submit-phone_number" /><br/>
+    Phone Number: <input type='text' name='phone_number' id='phone_number'  value="" /><br/>
+    <input type="submit" value="Add Additonal Phone Number" name="addphone_number" /><br/>
     </form>
+    <input type="submit" value="Update Profile" name="submit-updateProfile" />
     <form action="profile.php" method="post">
     <input type="submit" value="Cancel" name="cancel" />
     </form>
