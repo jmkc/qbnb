@@ -37,6 +37,12 @@ if(isset($_POST['submit-form'])) {
     //check to see if user name already exists
 
     //check to see if passwords match
+    if(!$email or !$FName or !$LName or !year or !$faculty or !$degree or !$phone_number or !$password){
+        $error .= "Please enter all fields.<br/> \n\r";
+        $success = false;
+    }
+    
+    
     if($password != $password_confirm) {
         $error .= "Passwords do not match.<br/> \n\r";
         $success = false;

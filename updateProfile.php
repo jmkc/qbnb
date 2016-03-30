@@ -43,7 +43,7 @@ if(isset($_POST['submit-updateProfile'])) {
         $member->degree = $degree;
         $member->save();
         $message = "Settings Saved<br/>";
-        header("Location: profile.php");
+        //header("Location: profile.php");
     } else {
         $message = "Please enter a valid year";
     }
@@ -74,7 +74,7 @@ if(isset($_POST['submit-phone_number'])) {
     <h1>Update Profile</h1>
     <h2>Update Profile Information</h2>
     <?php echo $message ?> 
-    <form action="profile.php" method="post">
+    <form action="updateProfile.php" method="post">
     First Name: <input type='text' name='FName' id='FName'  value="<?php echo $FName; ?>" /><br/>
     Last Name: <input type='text' name='LName' id='LName'  value="<?php echo $LName; ?>"/><br/>
     Year: <input type='text' name='year' id='year'  value="<?php echo $year; ?>"/><br/>
@@ -83,13 +83,15 @@ if(isset($_POST['submit-phone_number'])) {
     Password: <input type="password" name="password" /><br/>
     Password (confirm): <input type="password"  name="password-confirm" /><br/>
     <input type="submit" value="Update Profile" name="submit-updateProfile" />
+    
     </form>
     <h2>Add Phone Number</h2>
     Phone Number: 
-    <form method="post">
+    <form action="updateProfile.php" method="post">
     <input type='text' name='phone_number' id='phone_number'  value="" /><br/>
     <input type="submit" value="Add Additonal Phone Number" name="submit-phone_number" /><br/>
     </form>
+    
     <form action="profile.php" method="post">
     <input type="submit" value="Cancel" name="cancel" />
     </form>
