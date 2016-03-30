@@ -46,9 +46,9 @@ if(isset($_POST['Search'])) {
  	{
  		extract($booking);
         if ($is_deleted == 0){
- 		echo "<br />Status: $status<br />Address: $address <br /> Number of Rooms: $number_of_rooms - Room Type: $room_type - Price: $price - Owner: $FName $LName - Move In Date: $start_date <br />";
+ 		echo "<br />Status: $status<br />Address: $address <br /> Number of Rooms: $number_of_rooms <br /> Room Type: $room_type <br /> Price: $price <br /> Owner: $FName $LName <br /> Move In Date: $start_date <br />";
  		$sql = "select * from Points_Of_Interest where district_id = $district_id";
-        echo "Points of Interest:";
+        echo "Points of Interest: ";
         $POIs = mysql_query($sql);
         while ($POI = mysql_fetch_assoc($POIs)){
             extract($POI);
@@ -61,7 +61,7 @@ if(isset($_POST['Search'])) {
  	}
     }
     else{
-        echo "You have no current confirmed bookings<br/>";
+        echo "You have no current bookings<br/>";
     }
     ?>
     <h1> Search For Bookings</h1>
