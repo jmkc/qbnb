@@ -60,7 +60,7 @@ if(isset($_POST['submit-phone_number'])) {
     $phone_id = $member->member_id;
     $phoneData['member_id'] = $phone_id;
     $db->insert($phoneData, 'Phone_Number');
-    header("Location: profile.php");
+    //header("Location: profile.php");
 }
 //If the form wasn't submitted, or didn't validate
 //then we show the registration form again
